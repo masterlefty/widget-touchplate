@@ -300,6 +300,15 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
             setTimeout(this.introAnimStep.bind(this), 5);
         },
         
+        introAnimStep: function() {
+            
+            this.curStep++;
+            
+            this.curV.x += this.deltax;
+            this.curV.y += this.deltay;
+            this.curFov += this.deltafov;
+            
+        },
     
 
         
