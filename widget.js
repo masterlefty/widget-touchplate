@@ -244,6 +244,7 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
             setTimeout(this.introAnimStep.bind(this), 5);
         },
         
+    
 
         
         /**
