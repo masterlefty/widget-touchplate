@@ -293,6 +293,25 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
                 this.saveOptionsLocalStorage();
             }
         },
+        
+        // scripting from current touchplate widget
+        statusEl: null, // cache the status element in DOM
+        
+        status: function(txt) {
+            
+            console.log("status. txt:", txt);
+            
+            if (this.statusEl == null) this.statusEl = $('#' + this.id + '-status');
+            var len = this.statusEl.val().length;
+            if (len > 30000) {
+                console.log("truncating status area text");
+                this.statusEl.val(this.statusEl.val().substring(len-5000));
+            }
+            this.statusEl.val(this.statusEl.val() + txt + "\n");
+            this.statusEl.scrollTop(this.statusEl[0].scrollHeight - this.statusEl.height()
+            );
+        },
+        
         /**
          * This method loads the pubsubviewer widget which attaches to our 
          * upper right corner triangle menu and generates 3 menu items like

@@ -156,7 +156,7 @@ that sent in the param.</td></tr><tr valign="top"><td>hideBody</td><td>function<
 know it was clicked by the user and thus we store it for the next 
 load so we can reset the user's preference. If you don't pass this 
 value in we don't store the preference because it was likely code 
-that sent in the param.</td></tr><tr valign="top"><td>forkSetup</td><td>function</td><td>function () <br><br>This method loads the pubsubviewer widget which attaches to our 
+that sent in the param.</td></tr><tr valign="top"><td>statusEl</td><td>object</td><td></td></tr><tr valign="top"><td>status</td><td>function</td><td>function (txt) </td></tr><tr valign="top"><td>forkSetup</td><td>function</td><td>function () <br><br>This method loads the pubsubviewer widget which attaches to our 
 upper right corner triangle menu and generates 3 menu items like
 Pubsub Viewer, View Standalone, and Fork Widget. It also enables
 the modal dialog that shows the documentation for this widget.<br><br>By using chilipeppr.load() we can ensure that the pubsubviewer widget
