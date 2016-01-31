@@ -383,7 +383,14 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
             }
         },
         
+        isAnimInfiniteRunning: false,
+        animInfiniteCallback: null,
         
+        animInfiniteStart: function() {
+            
+            this.isAnimInfiniteRunning = true;
+            this.animInfiniteCallback = setTimeout(this.animInfinite.bind(this), 10);
+        },
         
         
         /**
