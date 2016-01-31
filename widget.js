@@ -382,6 +382,9 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
                 this.animInfiniteStart();
             }
         },
+
+        
+        
         
         
         /**
