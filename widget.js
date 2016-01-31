@@ -326,6 +326,291 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
             });
 
         },
+        
+        //Three webGL object definitions
+        threeObj: {
+            "camera": {
+                "metadata": {
+                    "version": 4.3,
+                    "type": "Object",
+                    "generator": "ObjectExporter"
+                }, // end metadata
+                "object": {
+                    "uuid": "89F03B7D-AC02-43DF-848A-5771EB767F8C",
+                    "type": "PerspectiveCamera",
+                    "name": "Camera",
+                    "fov": 25,
+                    "aspect": 2.3550724637681157,
+                    "near": 0.1,
+                    "far": 100000,
+                    "matrix": [1,0,0,0,0,1,-0.371,0,0,0.371,1,0,-3.414,37,61,1]
+                } //end object line12
+            }, //end camera
+            "scene": {
+                "metadata": {
+                    "version": 4.3,
+					"type": "Object",
+					"generator": "ObjectExporter"
+                }, //end metadata line 24
+                "geometries": [
+                    {
+                        "uuid": "4601A1C8-537C-4551-BD1D-4C5AF434C3CB",
+						"type": "PlaneGeometry",
+						"width": 5000,
+						"height": 5000,
+						"widthSegments": 1,
+						"heightSegments": 1
+                    },
+                    {
+                        "uuid": "50DB6DF6-4923-441C-AE63-92D3A94EAEEC",
+					    "type": "CylinderGeometry",
+    					"radiusTop": 2,
+	    				"radiusBottom": 2,
+		    			"height": 10,
+			    		"radialSegments": 32,
+				    	"heightSegments": 1,
+					    "openEnded": false
+                    },
+                    {
+                        "uuid": "E52C9CE5-1054-4953-87BD-2CD5640D756E",
+						"type": "CylinderGeometry",
+						"radiusTop": 6,
+						"radiusBottom": 4,
+						"height": 2,
+						"radialSegments": 32,
+						"heightSegments": 1,
+						"openEnded": false
+                    },
+                    {
+                        "uuid": "5DA49C1D-243E-44BC-B9ED-3D451DC46576",
+						"type": "CylinderGeometry",
+						"radiusTop": 6,
+						"radiusBottom": 6,
+						"height": 5,
+						"radialSegments": 32,
+						"heightSegments": 1,
+						"openEnded": false
+                    },
+                    {
+                        "uuid": "7FC7C6E9-AB7B-4B04-8BE1-13C810B7A639",
+						"type": "CylinderGeometry",
+						"radiusTop": 10,
+						"radiusBottom": 9.08,
+						"height": 1,
+						"radialSegments": 64,
+						"heightSegments": 1,
+						"openEnded": false
+                    },
+                    {
+                        "uuid": "93672A9F-6465-4F99-91AF-3CE40984F939",
+						"type": "CylinderGeometry",
+						"radiusTop": 10,
+						"radiusBottom": 10,
+						"height": 100,
+						"radialSegments": 64,
+						"heightSegments": 1,
+						"openEnded": false
+                    },
+                    {
+                        "uuid": "AC65F2CF-EBFF-4EC9-A4EF-F9FCB356E78F",
+						"type": "CylinderGeometry",
+						"radiusTop": 18,
+						"radiusBottom": 18,
+						"height": 20,
+						"radialSegments": 64,
+						"heightSegments": 1,
+						"openEnded": false
+                    },
+                    {
+                        "uuid": "8EB2C68D-5127-417B-94B1-E5B428D39B58",
+						"type": "CylinderGeometry",
+						"radiusTop": 15,
+						"radiusBottom": 15,
+						"height": 10,
+						"radialSegments": 64,
+						"heightSegments": 1,
+						"openEnded": false
+                }], // end geometries line 29
+                "materials": [
+                    {
+                        "uuid": "D963E6DA-A503-450E-B082-F17EE56A0E75",
+						"type": "MeshPhongMaterial",
+						"color": 16777215,
+						"ambient": 16777215,
+						"emissive": 6184542,
+						"specular": 1118481,
+						"shininess": 30,
+						"opacity": 0.5
+                    },
+                    {
+                        "uuid": "BE00593A-F38B-48E1-9219-66CC5B0C81DF",
+						"type": "MeshPhongMaterial",
+						"color": 16777215,
+						"ambient": 16777215,
+						"emissive": 0,
+						"specular": 1118481,
+						"shininess": 30
+                    },
+                    {
+                        "uuid": "DE09C011-C3E2-4D2D-986C-D7EA95C3F99F",
+						"type": "MeshPhongMaterial",
+						"color": 16777215,
+						"ambient": 16777215,
+						"emissive": 0,
+						"specular": 1118481,
+						"shininess": 30
+                    },
+                    {
+                        "uuid": "0193A44A-30D0-4B28-BB6A-75652B7716E5",
+						"type": "MeshPhongMaterial",
+						"color": 16777215,
+						"ambient": 16777215,
+						"emissive": 0,
+						"specular": 1118481,
+						"shininess": 30
+                    },
+                    {
+                        "uuid": "D20E89D8-E7FF-4152-B666-46CBDB913FAC",
+						"type": "MeshPhongMaterial",
+						"color": 8292740,
+						"ambient": 16777215,
+						"emissive": 131340,
+						"specular": 1118481,
+						"shininess": 30,
+						"opacity": 0.8
+                    },
+                    {
+                        "uuid": "3E27D340-2002-48B3-A3CB-62DB72D1E1A6",
+						"type": "MeshPhongMaterial",
+						"color": 11974326,
+						"ambient": 16777215,
+						"emissive": 5395026,
+						"specular": 1118481,
+						"shininess": 30
+                }], // end materials line 108
+                "object": {
+                    "uuid": "31517222-A9A7-4EAF-B5F6-60751C0BABA3",
+					"type": "Scene",
+					"name": "Scene",
+					"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
+					"children": [
+					    {
+					        "uuid": "CB134A1B-D27A-4509-A4C7-971458B9D412",
+							"type": "SpotLight",
+							"name": "SpotLight 1",
+							"color": 16777215,
+							"intensity": 1,
+							"distance": 0,
+							"angle": 0.874,
+							"exponent": 10,
+							"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,100,200,150,1]
+					    },
+					    {
+					        "uuid": "65E528E3-190E-4679-A254-1692F2237593",
+							"type": "Mesh",
+							"name": "Plane 3",
+							"geometry": "4601A1C8-537C-4551-BD1D-4C5AF434C3CB",
+							"material": "D963E6DA-A503-450E-B082-F17EE56A0E75",
+							"matrix": 
+							[1,0,0,0,0,0.0003,-1,0,0,1,0.0003,0,0,0,0,1]
+					    },
+					    {
+					        "uuid": "0D3032BA-5923-4B8F-BA26-4E45525DB3D1",
+							"type": "Group",
+							"name": "GroupSpindle",
+							"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
+							"children": [
+							    {
+							        "uuid": 
+							        "768EAB11-0588-4690-A053-E6F9C5BB87E0",
+									"type": "Mesh",
+									"name": "Endmill",
+									"geometry": 
+									"50DB6DF6-4923-441C-AE63-92D3A94EAEEC",
+									"material": 
+									"BE00593A-F38B-48E1-9219-66CC5B0C81DF",
+									"matrix": 
+									[1,0,0,0,0,1,0,0,0,0,1,0,0,18.51,0,1]
+							    },
+							    {
+							        "uuid": 
+							        "6CD932C4-5C71-404B-B0FB-5B7879388F2E",
+									"type": "Mesh",
+									"name": "ColletTaper",
+									"geometry": 
+									"E52C9CE5-1054-4953-87BD-2CD5640D756E",
+									"material": 
+									"DE09C011-C3E2-4D2D-986C-D7EA95C3F99F",
+									"matrix": 
+									[1,0,0,0,0,1,0,0,0,0,1,0,0,22.63,0,1]
+							    },
+							    {
+							        "uuid": 
+							        "C4D75B11-5EC3-4267-AAA5-B62DC2DD6507",
+									"type": "Mesh",
+									"name": "Collet",
+									"geometry": 
+									"5DA49C1D-243E-44BC-B9ED-3D451DC46576",
+									"material": 
+									"0193A44A-30D0-4B28-BB6A-75652B7716E5",
+									"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,26,0,1]
+							    },
+							    {
+							        "uuid": 
+							        "84DECC53-67F7-4707-B9EC-F26F5FBDBC28",
+									"type": "Mesh",
+									"name": "SpindleBaseTaper",
+									"geometry": 
+									"7FC7C6E9-AB7B-4B04-8BE1-13C810B7A639",
+									"material": 
+									"D20E89D8-E7FF-4152-B666-46CBDB913FAC",
+									"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,29,0,1]
+							    },
+							    {
+							        "uuid": 
+							        "329C2A35-C121-489E-86D8-86B8426A4726",
+									"type": "Mesh",
+									"name": "SpindleBase",
+									"geometry": 
+									"93672A9F-6465-4F99-91AF-3CE40984F939",
+									"material": 
+									"D20E89D8-E7FF-4152-B666-46CBDB913FAC",
+									"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,79.5,0,1]
+							}], //end children line 195
+					    },
+					    {
+					        "uuid": "B0F9BB34-C502-46B6-A34E-BB374743DFCB",
+							"type": "Group",
+							"name": "GroupTouchPlate",
+							"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
+							"children": [
+							    {
+							        "uuid": 
+							        "F489E92A-EE90-48AC-88AF-4867D7049272",
+									"type": "Mesh",
+									"name": "TouchPlateOuter",
+									"geometry": 
+									"AC65F2CF-EBFF-4EC9-A4EF-F9FCB356E78F",
+									"material": 
+									"D20E89D8-E7FF-4152-B666-46CBDB913FAC",
+									"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1]
+							    },
+							    {
+							        "uuid": 
+							        "B38B19B8-5E6A-4EAB-89B5-998A8B10BD7A",
+									"type": "Mesh",
+									"name": "TouchPlateMetal",
+									"geometry": 
+									"8EB2C68D-5127-417B-94B1-E5B428D39B58",
+									"material": 
+									"3E27D340-2002-48B3-A3CB-62DB72D1E1A6",
+									"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,6.12,0,1]
+							}] //end children line 242
+					}] // end children line 170
+                } //end object line 165
+            }, // end scene line 23
+            "scripts": {}
+        } //end threeObj
 
     }; //end of return, line 78
 }); //end of cpdefine, line 77
