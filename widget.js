@@ -27,10 +27,29 @@ requirejs.config({
         // Example of how to define the key (you make up the key) and the URL
         // Make sure you DO NOT put the .js at the end of the URL
         // SmoothieCharts: '//smoothiecharts.org/smoothie',
+        Three: '//i2dcui.appspot.com/geturl?url=http://threejs.org/build/three.min.js',
+        ThreeTextGeometry: '//i2dcui.appspot.com/js/three/TextGeometry',
+        ThreeFontUtils: '//i2dcui.appspot.com/js/three/FontUtils',
+        ThreeDetector: '//i2dcui.appspot.com/geturl?url=http://threejs.org/examples/js/Detector.js',
+        ThreeTrackballControls: '//i2dcui.appspot.com/geturl?url=http://threejs.org/examples/js/controls/TrackballControls.js',
+        ThreeOrbitControls: '//threejs.org/examples/js/controls/OrbitControls',
+        ThreeHelvetiker: '//i2dcui.appspot.com/js/three/threehelvetiker',
+        ThreeTypeface: 'https://superi.googlecode.com/svn-history/r1953/trunk/MBrand/MBrand/Scripts/typeface-0.15',
+        ThreeTween: '//i2dcui.appspot.com/js/three/tween.min',
+        ThreeBufferGeometryUtils: '//i2dcui.appspot.com/js/three/BufferGeometryUtils'
+
     },
     shim: {
         // See require.js docs for how to define dependencies that
         // should be loaded before your script/widget.
+        ThreeTextGeometry: ['Three'],
+        ThreeFontUtils: ['Three', 'ThreeTextGeometry'],
+        ThreeHelvetiker: ['Three', 'ThreeTextGeometry', 'ThreeFontUtils'],
+        ThreeTrackballControls: ['Three'],
+        ThreeTween: ['Three'],
+        ThreeSparks: ['Three'],
+        ThreeParticle: ['Three'],
+        ThreeBufferGeometryUtils: ['Three']
     }
 });
 
@@ -74,7 +93,7 @@ cprequire_test(["inline:com-chilipeppr-widget-touchplate"], function(myWidget) {
 } /*end_test*/ );
 
 // This is the main definition of your widget. Give it a unique name.
-cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", /* other dependencies here */ ], function() {
+cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three',/* other dependencies here */ ], function() {
     return {
         /**
          * The ID of the widget. You must define this and make it unique.
@@ -84,7 +103,8 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", /* othe
         desc: "This widget helps you use a touch plate to create your Z zero offset.", // A description of what your widget does
         url: "(auto fill by runme.js)",       // The final URL of the working widget as a single HTML file with CSS and Javascript inlined. You can let runme.js auto fill this if you are using Cloud9.
         fiddleurl: "(auto fill by runme.js)", // The edit URL. This can be auto-filled by runme.js in Cloud9 if you'd like, or just define it on your own to help people know where they can edit/fork your widget
-        githuburl: "https://github.com/masterlefty/widget-touchplate", // The backing github repo
+        githuburl: "(auto fill by runme.js)", // The backing github repo
+        // githuburl: "https://github.com/masterlefty/widget-touchplate", // The backing github repo
         testurl: "(auto fill by runme.js)",   // The standalone working widget so can view it working by itself
         /**
          * Define pubsub signals below. These are basically ChiliPeppr's event system.
@@ -307,5 +327,5 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", /* othe
 
         },
 
-    }
-});
+    }; //end of return, line 78
+}); //end of cpdefine, line 77
