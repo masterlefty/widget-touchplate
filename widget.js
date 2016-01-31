@@ -83,8 +83,69 @@ cprequire_test(["inline:com-chilipeppr-widget-touchplate"], function(myWidget) {
                 //console.log("inside require of " + fm.id);
                 fm.init();
             });
-        }
-    );
+    });
+    
+    /*
+    chilipeppr.load("#test-serial-port", "http://fiddle.jshell.net/chilipeppr/vetj5fvx/show/light/",
+
+    function () {
+        cprequire(
+        ["inline:com-chilipeppr-widget-serialport"],
+
+        function (sp) {
+            sp.setSingleSelectMode();
+            sp.init(null, "tinyg");
+            //sp.consoleToggle();
+        });
+    });
+    
+    // tinyg widget test load
+    chilipeppr.load("#test-tinyg", "http://fiddle.jshell.net/chilipeppr/XxEBZ/show/light/",
+
+    function () {
+        cprequire(
+        ["inline:com-chilipeppr-widget-tinyg"],
+
+        function (tinyg) {
+            tinyg.init();
+        });
+    });
+    
+    // axes widget test load
+    chilipeppr.load(
+        "#test-axes",
+        "http://fiddle.jshell.net/chilipeppr/gh45j/show/light/",
+
+    function () {
+        cprequire(
+        ["inline:com-chilipeppr-widget-xyz"],
+
+        function (xyz) {
+            xyz.init();
+        });
+    });
+    
+    // Serial Port Console Log Window
+    // http://jsfiddle.net/chilipeppr/JB2X7/
+    // NEW VERSION http://jsfiddle.net/chilipeppr/rczajbx0/
+    // The new version supports onQueue, onWrite, onComplete
+
+    chilipeppr.load("#test-console",
+        "http://fiddle.jshell.net/chilipeppr/rczajbx0/show/light/",
+
+    function () {
+        cprequire(
+        ["inline:com-chilipeppr-widget-spconsole"],
+
+        function (spc) {
+            // pass in regular expression filter as 2nd parameter
+            // to enable filter button and clean up how much
+            // data is shown
+            spc.init(true, /^{/);
+            
+        });
+    });
+    */
 
     // init my widget
     myWidget.init();
