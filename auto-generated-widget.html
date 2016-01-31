@@ -219,18 +219,20 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
             
         // scripting from current touchplate widget
             this.init3d();
-            
+
             // load audio
             this.audio = new Audio('http://chilipeppr.com/audio/beep.wav');
             this.inInitted = true;
-            
+
             // issue a resize later
             // issue resize event so other widgets can reflow
             $(window).trigger('resize');
         // end scripting from current touchplate widget
-            
+
             console.log("I am done being initted.");
         },
+
+        
         /**
          * Call this method from init to setup all the buttons when this widget
          * is first loaded. This basically attaches click events to your 
