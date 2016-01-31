@@ -1,10 +1,36 @@
 /* CSS for ChiliPeppr Widget */
 
-#com-chilipeppr-widget-touchplate {
-   
-}
-
-#com-chilipeppr-widget-touchplate .nav-tabs>li>a {
+#com-chilipeppr-widget-touchplate .nav-tabs {
     padding: 2px 6px;
 }
 
+#com-chilipeppr-widget-touchplate .panel-body{
+   padding: 0;
+   position: relative;
+   height: 250px;
+}
+
+#com-chilipeppr-widget-touchplate .settings-overlay{
+   position: absolute;
+   top: 55px;
+   left: 40%;
+   bottom: 10px;
+   right: 10px;
+   border: 0px solid red;
+}
+
+#com-chilipeppr-widget-touchplate .input-grouo-addon{
+   font-size: 10px;
+}
+
+#com-chilipeppr-widget-touchplate .panel-footer{
+   font-size: 11px;
+   padding: 0;
+   margin: 0;
+}
+
+#com-chilipeppr-widget-touchplate-status{
+   background: none;
+   background-color: #f5f5f5;
+   border: none;
+}

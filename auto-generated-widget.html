@@ -17,15 +17,40 @@
     <style type='text/css'>
 /* CSS for ChiliPeppr Widget */
 
-#com-chilipeppr-widget-touchplate {
-   
-}
-
-#com-chilipeppr-widget-touchplate .nav-tabs>li>a {
+#com-chilipeppr-widget-touchplate .nav-tabs {
     padding: 2px 6px;
 }
 
+#com-chilipeppr-widget-touchplate .panel-body{
+   padding: 0;
+   position: relative;
+   height: 250px;
+}
 
+#com-chilipeppr-widget-touchplate .settings-overlay{
+   position: absolute;
+   top: 55px;
+   left: 40%;
+   bottom: 10px;
+   right: 10px;
+   border: 0px solid red;
+}
+
+#com-chilipeppr-widget-touchplate .input-grouo-addon{
+   font-size: 10px;
+}
+
+#com-chilipeppr-widget-touchplate .panel-footer{
+   font-size: 11px;
+   padding: 0;
+   margin: 0;
+}
+
+#com-chilipeppr-widget-touchplate-status{
+   background: none;
+   background-color: #f5f5f5;
+   border: none;
+}
     </style>
 
     <script type='text/javascript'>
@@ -203,42 +228,8 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", /* othe
                 container: 'body'
             });
 
-            // Init Say Hello Button on Main Toolbar
-            // We are inlining an anonymous method as the callback here
-            // as opposed to a full callback method in the Hello Word 2
-            // example further below. Notice we have to use "that" so 
-            // that the this is set correctly inside the anonymous method
-            $('#' + this.id + ' .btn-sayhello').click(function() {
-                console.log("saying hello");
-                // Make sure popover is immediately hidden
-                $('#' + that.id + ' .btn-sayhello').popover("hide");
-                // Show a flash msg
-                chilipeppr.publish(
-                    "/com-chilipeppr-elem-flashmsg/flashmsg",
-                    "Hello Title",
-                    "Hello World from widget " + that.id,
-                    1000
-                );
-            });
-
-            // Init Hello World 2 button on Tab 1. Notice the use
-            // of the slick .bind(this) technique to correctly set "this"
-            // when the callback is called
-            $('#' + this.id + ' .btn-helloworld2').click(this.onHelloBtnClick.bind(this));
-
         },
-        /**
-         * onHelloBtnClick is an example of a button click event callback
-         */
-        onHelloBtnClick: function(evt) {
-            console.log("saying hello 2 from btn in tab 1");
-            chilipeppr.publish(
-                '/com-chilipeppr-elem-flashmsg/flashmsg',
-                "Hello 2 Title",
-                "Hello World 2 from Tab 1 from widget " + this.id,
-                2000 /* show for 2 second */
-            );
-        },
+
         /**
          * User options are available in this property for reference by your
          * methods. If any change is made on these options, please call
@@ -440,12 +431,12 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", /* othe
                 </div>
 
                 <!-- Tab 2 -->
-                <div class="tab-pane" id="com-chilipeppr-widget-touchplate-tab2">
+                <div class="tab-pane settings-overlay" id="com-chilipeppr-widget-touchplate-tab2">
                     <p>This is the content of tab 2.</p>
                 </div>
 
                 <!-- Tab 3 -->
-                <div class="tab-pane" id="com-chilipeppr-widget-touchplate-tab3">
+                <div class="tab-pane settings-overlay" id="com-chilipeppr-widget-touchplate-tab3">
                     <p>This is the content of tab 3.</p>
                 </div>
                 
