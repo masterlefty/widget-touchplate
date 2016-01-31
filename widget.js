@@ -269,6 +269,41 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
             this.introAnim();
         },
         
+        introAnim: function() {
+            
+            var v = this.spindle.position.clone();
+            
+            // start
+            var startx = v.x - 5;
+            var starty = v.y + 12;
+            var startfov = 45;
+            
+            // end
+            var endx = v.x - 5;
+            var endy = v.y + 10;
+            var endfov = this.camera.fov;
+            
+            this.steps = 50;
+            this.deltax = (endx - startx) / this.steps;
+            this.deltay = (endy - starty) / this.steps;
+            this.deltafov = (endfov - startfov) / this.steps;
+            
+            this.camera.fov = startfov;
+            this.camera.updateProjectionMatrix();
+            
+            v.x = startx;
+            v.y = starty;
+            
+            this.curV = v;
+            this.curFov = startfov;
+            this.curStep = 0;
+            
+            this.camera.lookAt(this.curV);
+            this.animate();
+            
+            setTimeout(this.introAnimStep.bind(this), 5);
+        },
+        
         
         /**
          * Call this method from init to setup all the buttons when this widget
