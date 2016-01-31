@@ -300,8 +300,23 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
             setTimeout(this.introAnimStep.bind(this), 5);
         },
         
+    // scripting from current touchplate widget
+        deltax: null,
+        deltay: null,
+        deltafov: null,
+        curV: null,
+        curFov: null,
+        curStep: null,
+        steps: null,
+        
         introAnimStep: function() {
             
+            this.curStep++;
+            
+            this.curV.x += this.deltax;
+            this.curV.y += this.deltay;
+            this.curFov += this.deltafov;
+
             
             
         },
