@@ -246,11 +246,7 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
         
         introAnimStep: function() {
             
-            this.curStep++;
             
-            this.curV.x += this.deltax;
-            this.curV.y += this.deltay;
-            this.curFov += this.deltafov;
             
         },
     
