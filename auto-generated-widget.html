@@ -210,20 +210,22 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
         init: function() {
             console.log("I am being initted. Thanks.");
 
-            this.init3d();
             this.setupUiFromLocalStorage();
             this.btnSetup();
             this.forkSetup();
             
+        // scripting from current touchplate widget
+            this.init3d();
+            
             // load audio
             this.audio = new Audio('http://chilipeppr.com/audio/beep.wav');
+            this.inInitted = true;
             
-            this.isInitted = true;
-            
-            // issue a resize a bit later
+            // issue a resize later
             // issue resize event so other widgets can reflow
             $(window).trigger('resize');
-
+        // end scripting from current touchplate widget
+            
             console.log("I am done being initted.");
         },
         /**
