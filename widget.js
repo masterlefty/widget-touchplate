@@ -151,24 +151,15 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
          * All widgets should have an init method. It should be run by the
          * instantiating code like a workspace or a different widget.
          */
+
+        isInitted: false, // keep track of our one-time init
+        
         init: function() {
             console.log("I am being initted. Thanks.");
 
             this.setupUiFromLocalStorage();
             this.btnSetup();
             this.forkSetup();
-            
-        // scripting from current touchplate widget
-            this.init3d();
-            
-            // load audio
-            this.audio = new Audio('http://chilipeppr.com/audio/beep.wav');
-            this.inInitted = true;
-            
-            // issue a resize later
-            // issue resize event so other widgets can reflow
-            $(window).trigger('resize');
-        // end scripting from current touchplate widget
             
             console.log("I am done being initted.");
         },
