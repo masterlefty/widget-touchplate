@@ -360,6 +360,33 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
             setTimeout(this.introAnimStep.bind(this), 5);
         },
         
+        deltax: null,
+        deltay: null,
+        deltafov: null,
+        curV: null,
+        curFov: null,
+        curStep: null,
+        steps: null,
+        
+        introAnimStep: function() {
+            
+            this.curStep++;
+            
+            this.curV.x += this.deltax;
+            this.curV.y += this.deltay;
+            this.curFov += this.deltafov;
+            
+            console.log("introAnimStep. this.curV:", this.curV, "curFov:", this.curFov);
+            
+            this.camera.lookAt(this.curV);
+            this.camera.fov = this.curFov;
+            this.camera.updateProjectionMatrix();
+            this.animate();
+            
+            if (this.curStep < this.steps)
+                setTimeout(this.introAnimStep.bind(this), 5);
+        },
+        
         
         /**
          * Call this method from init to setup all the buttons when this widget
