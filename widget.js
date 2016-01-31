@@ -271,6 +271,59 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
             if (this.curStep < this.steps)
                 setTimeout(this.introAnimStep.bind(this), 5);
         },
+        
+    // scripting from current touchplate widget
+        gcodeCtr: 0,
+        isRunning: false,
+        
+        onRun: function(evt) {
+            
+            // when user clicks the run button
+            console.log("user clicked run button. evt:", evt);
+            
+            if (this.isRunning) {
+                // we need to stop
+                
+                // fire off cancel to cnc
+                var id = "tp" + this.gcodeCtr++;
+                var gcode = "!\n";
+                chilipeppr.publish("/com-chilipeppr-widget-serialport/jsonSend", {Id: id, D: gcode});
+                
+                // swap button to stop
+                $('#' + this.id + ' .btn-touchplaterun').removeClass("btn-danger").text("Run");
+                
+                // start animation showing spindle descending
+                this.animInfiniteEnd();
+                
+                this.isRunning = false;
+            }
+            else {
+
+                // we need to run the whole darn process
+                this.isRunning = true;
+                
+                // swap button to stop
+                $('#' + this.id + ' .btn-touchplaterun').addClass("btn-danger").text("Stop");
+                
+                // get user feedrate
+                var fr = $('#com-chilipeppr-widget-touchplate .frprobe').val();
+                
+                // now start watching z
+                this.watchForProbeStart();
+                
+                // send the probe command to start the movement
+                var id = "tp" + this.gcodeCtr++;
+                
+                var gcode = "G21 G91 (Use mm and rel coords)\n";
+                chilipeppr.publish("/com-chilipeppr-widget-serialport/jsonSend", {Id: id, D: gcode});
+                id = "tp" + this.gcodeCtr++;
+                gcode = "G38.2 Z-20 F" + fr + "\n";
+                chilipeppr.publish("/com-chilipeppr-widget-serialport/jsonSend", {Id: id, D: gcode});
+                
+                // start animation showing spindle descending
+                this.animInfiniteStart();
+            }
+        },
     
 
         
