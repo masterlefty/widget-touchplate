@@ -306,7 +306,7 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
                 $('#' + this.id + ' .btn-touchplaterun').addClass("btn-danger").text("Stop");
                 
                 // get user feedrate
-                var fr = $('#com-chilipeppr-widget-touchplate .frprobe').val();
+                var fr = $('#' + this.id + ' .frprobe').val();
                 
                 // now start watching z
                 this.watchForProbeStart();
