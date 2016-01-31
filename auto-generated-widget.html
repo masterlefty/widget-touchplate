@@ -210,9 +210,19 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
         init: function() {
             console.log("I am being initted. Thanks.");
 
+            this.init3d();
             this.setupUiFromLocalStorage();
             this.btnSetup();
             this.forkSetup();
+            
+            // load audio
+            this.audio = new Audio('http://chilipeppr.com/audio/beep.wav');
+            
+            this.isInitted = true;
+            
+            // issue a resize a bit later
+            // issue resize event so other widgets can reflow
+            $(window).trigger('resize');
 
             console.log("I am done being initted.");
         },
@@ -281,8 +291,8 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
                 options = {
                     showBody: true,
                     tabShowing: 1,
-                    customParam1: null,
-                    customParam2: 1.0
+                    frprobe: 25,
+                    heightplate: 1.75
                 };
             }
 
@@ -296,16 +306,28 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
             else {
                 this.hideBody();
             }
-
+            
+            // setup textboxes
+            $('#' + this.id + ' .frprobe').val(this.options.frprobe);
+            $('#' + this.id + ' .heightplate').val(this.options.heightplate);
+            
+            // attach onchange
+            $('#' + this.id + ' input').change(this.saveOptionsLocalStorage.bind(this));
         },
         /**
          * When a user changes a value that is stored as an option setting, you
          * should call this method immediately so that on next load the value
          * is correctly set.
          */
+        
         saveOptionsLocalStorage: function() {
             // You can add your own values to this.options to store them
             // along with some of the normal stuff like showBody
+            
+            // grab text values
+            this.options.frprobe = $('#' + this.id + '.frprobe').val();
+            this.options.heightplate = $('#' + this.id + '.heightplate').val();
+            
             var options = this.options;
 
             var optionsStr = JSON.stringify(options);
@@ -388,7 +410,7 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
                 title: this.name,
                 content: this.desc,
                 html: true,
-                delay: 1000,
+                delay: 200,
                 animation: true,
                 trigger: 'hover',
                 placement: 'auto'
