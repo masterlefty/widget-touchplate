@@ -175,6 +175,39 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
 
             console.log("I am done being initted.");
         },
+        
+    // scripting from current touchplate widget
+        audio: null,
+        // loader: new THREE.ObjectLoader(),
+        camera: null, 
+        scene: null, 
+        renderer: null,
+        scripts: {},
+        dom: undefined,
+        width: 500,
+        height: 500,
+        touchplate: null, // threejs group
+        spindle: null, // threejs group
+        light: null, // threejs light
+        
+        init3d: function() {
+            
+            // init the threejs stuff
+            this.width = $('#' + this.id + ' .panel-body').width();
+            this.height = 210;
+            
+            this.load(this.threeObj);
+            console.log("scene width:", this.width, "height:", this.height);
+            this.setSize(this.width, this.height);
+            $('#' + this.id + ' .panel-body').prepend( this.dom );
+            $(window).resize(this.onresize.bind(this));
+            
+            // setup run button
+            $('#' + this.id + ' .btn-touchplaterun').click(this.onRun.bind(this));
+            // run intro anim
+            this.introAnim();
+        },
+        
 
         
         /**
