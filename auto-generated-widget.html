@@ -316,9 +316,16 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
             this.curV.x += this.deltax;
             this.curV.y += this.deltay;
             this.curFov += this.deltafov;
-
             
+            console.log("introAnimStep. this.curV:", this.curV, "curFov:", this.curFov);
             
+            this.camera.lookAt(this.curV);
+            this.camera.fov = this.curFov;
+            this.camera.updateProjectionMatrix();
+            this.animate();
+            
+            if (this.curStep < this.steps)
+                setTimeout(this.introAnimStep.bind(this), 5);
         },
     
 
