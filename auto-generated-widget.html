@@ -380,7 +380,12 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
                 this.animInfiniteStart();
             }
         },
-    
+        
+        watchForProbeStart: function() {
+
+            // We need to subscribe to the /recvline cuz we need to analyze everything coming back
+            chilipeppr.subscribe("/com-chilipeppr-widget-serialport/recvline", this, this.onRecvLineForProbe);
+        },
 
         
         /**
