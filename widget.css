@@ -21,7 +21,6 @@
    bottom: 10px;
    right: 10px;
    border: 0px solid red;
-   height: 250px;
 }
 
 #com-chilipeppr-widget-touchplate .input-grouo-addon{
@@ -38,4 +37,13 @@
    background: none;
    background-color: #f5f5f5;
    border: none;
+}
+
+#com-chilipeppr-widget-touchplate .settings-notes{
+   position: absolute;
+   top: 55px;
+   bottom: 10px;
+   right: 10px;
+   border: 0px solid red;
+   overflow-y: scroll;
 }
