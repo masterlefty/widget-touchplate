@@ -85,7 +85,7 @@ cprequire_test(["inline:com-chilipeppr-widget-touchplate"], function(myWidget) {
             });
     });
     
-    /*
+    
     chilipeppr.load("#test-serial-port", "http://fiddle.jshell.net/chilipeppr/vetj5fvx/show/light/",
 
     function () {
@@ -145,7 +145,7 @@ cprequire_test(["inline:com-chilipeppr-widget-touchplate"], function(myWidget) {
             
         });
     });
-    */
+    
 
     // init my widget
     myWidget.init();
