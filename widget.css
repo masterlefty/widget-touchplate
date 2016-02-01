@@ -44,6 +44,6 @@
    top: 55px;
    bottom: 10px;
    right: 10px;
-   border: 0px solid red;
+   height: 190px;
    overflow-y: scroll;
 }
