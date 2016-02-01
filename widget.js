@@ -383,6 +383,8 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
             }
         },
         
+        
+        
         isAnimInfiniteRunning: false,
         animInfiniteCallback: null,
         
