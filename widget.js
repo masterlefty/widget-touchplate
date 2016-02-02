@@ -27,8 +27,8 @@ requirejs.config({
         // Example of how to define the key (you make up the key) and the URL
         // Make sure you DO NOT put the .js at the end of the URL
         // SmoothieCharts: '//smoothiecharts.org/smoothie',
-        // Three: 'http://thireejs.org/build/three.min',
-        Three: '//i2dcui.appspot.com/geturl?url=http://threejs.org/build/three.min',
+        Three: 'http://thireejs.org/build/three.min',
+        //Three: '//i2dcui.appspot.com/geturl?url=http://threejs.org/build/three.min',
         ThreeTextGeometry: '//i2dcui.appspot.com/js/three/TextGeometry',
         ThreeFontUtils: '//i2dcui.appspot.com/js/three/FontUtils',
         ThreeDetector: '//i2dcui.appspot.com/geturl?url=http://threejs.org/examples/js/Detector',
