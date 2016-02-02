@@ -604,6 +604,12 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
             // store settings to localStorage
             localStorage.setItem(this.id + '-options', optionsStr);
         },
+        
+        onresize: function() {
+          this.width = $('#com-chilipeppr-widget-touchplate .panel-body').width();
+            this.setSize(this.width, this.height);
+        },
+        
         /**
          * Show the body of the panel.
          * @param {jquery_event} evt - If you pass the event parameter in, we 
