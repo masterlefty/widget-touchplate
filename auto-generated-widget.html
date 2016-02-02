@@ -528,6 +528,33 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
             chilipeppr.publish("/com-chilipeppr-widget-serialport/jsonSend", {Id: id, D: gcode});
         },
         
+        onRecvLineForProbe: function(data) {
+            console.log("onRecvLineForProbe. data:", data);
+            
+            // the data we're looking for is:
+            // {"prb":{"e":1,"z":-7.844}}
+            
+            // make sure it's the data we want
+            if (!('dataline' in data)) {
+                console.log("did not get dataline in data. returning.");
+                return;
+            }
+            
+            // let's make sure it's json
+            var json = $.parseJSON(data.dataline);
+            
+            // sometimes we get {"r":{"prb"  instead of {"prb": so just
+            // detect and remap
+            if ('r' in json && 'prb' in json.r) json = json.r;
+            
+            if ('prb' in json && 'e' in json.prb && 'z' in json.prb ) {
+                // yes, it's data for the probe ending
+                
+                // now do all the final steps now that we got our data
+                this.onAfterProbeDone(json.prb);
+            }
+        },
+        
         watchForProbeEnd: function() {
             chilipeppr.unsubscribe("/com-chilipeppr-widget-serialport/recvline", this, this.onRecvLineForProbe);
         },
