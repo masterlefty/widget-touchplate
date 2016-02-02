@@ -504,6 +504,12 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
             chilipeppr.unsubscribe("/com-chilipeppr-widget-serialport/recvline", this, this.onRecvLineForProbe);
         },
         
+        dispatch: function ( array, event ) {
+            for ( var i = 0, l = array.length; i < l; i ++ ) {
+                array[ i ]( event );
+            }
+        },
+        
         
         
         /**
