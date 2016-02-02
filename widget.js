@@ -416,6 +416,10 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
 
         },
         
+        watchForProbeEnd: function() {
+            chilipeppr.unsubscribe("/com-chilipeppr-widget-serialport/recvline", this, this.onRecvLineForProbe);
+        },
+        
         
         
         /**
