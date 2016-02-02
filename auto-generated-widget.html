@@ -339,6 +339,17 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
             this.introAnim();
         },
         
+        setSize: function ( width, height ) {
+            
+            this.width = width;
+			this.height = height;
+			
+			this.camera.aspect = this.width / this.height;
+			this.camera.updateProjectionMatrix();
+			
+			this.renderer.setSize( width, height );
+        },
+        
         introAnim: function() {
             
             var v = this.spindle.position.clone();
