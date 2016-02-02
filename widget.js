@@ -388,6 +388,18 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
             }
         },
         
+         isAnimInfiniteRunning: false,
+        animInfiniteCallback: null,
+        
+        animInfiniteStart: function() {
+            this.isAnimInfiniteRunning = true;
+            this.animInfiniteCallback = setTimeout(this.animInfinite.bind(this), 10);
+        },
+        
+        animInfiniteEnd: function() {
+            this.isAnimInfiniteRunning = false;
+        },
+        
         animInfinite: function() {
             // move down the spindle
             console.log("about to move the spindle down. this.spindle.position:", this.spindle.position);
@@ -403,19 +415,6 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
             }
 
         },
-        
-        isAnimInfiniteRunning: false,
-        animInfiniteCallback: null,
-        
-        animInfiniteStart: function() {
-            this.isAnimInfiniteRunning = true;
-            this.animInfiniteCallback = setTimeout(this.animInfinite.bind(this), 10);
-        },
-        
-        animInfiniteEnd: function() {
-            this.isAnimInfiniteRunning = false;
-        },
-        
         
         
         
