@@ -331,6 +331,17 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
                 setTimeout(this.introAnimStep.bind(this), 5);
         },
         
+        /**
+         * Load animate(time)
+         */
+        animate: function ( time ) {
+
+            this.renderer.render( this.scene, this.camera );
+		},
+
+         
+        
+        
         gcodeCtr: 0,
         isRunning: false,
         
