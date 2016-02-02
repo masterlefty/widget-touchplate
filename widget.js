@@ -647,6 +647,34 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
             }
         },
         
+        isHidden: false,
+        unactivateWidget: function() {
+            if (!this.isHidden) {
+                // unsubscribe from everything
+                console.log("unactivateWidget. unsubscribing.");
+
+                this.isHidden = true;
+            }
+            // issue resize event so other widgets can reflow
+            $(window).trigger('resize');
+        },
+        
+        activateWidget: function() {
+            if (!this.isInitted) {
+                this.init();
+            }
+            if (this.isHidden) {
+                // resubscribe
+                console.log("activateWidget. resubscribing.");
+                //chilipeppr.subscribe("/com-chilipeppr-interface-cnccontroller/axes", this, this.onAxes);
+                //chilipeppr.subscribe("/com-chilipeppr-widget-serialport/ws/recv", this, this.onWsRecvLaser);
+                this.isHidden = false;
+                this.introAnim();
+            }
+            // issue resize event so other widgets can reflow
+            $(window).trigger('resize');
+        },
+        
         // scripting from current touchplate widget
         statusEl: null, // cache the status element in DOM
         
