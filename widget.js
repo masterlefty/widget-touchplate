@@ -27,8 +27,8 @@ requirejs.config({
         // Example of how to define the key (you make up the key) and the URL
         // Make sure you DO NOT put the .js at the end of the URL
         // SmoothieCharts: '//smoothiecharts.org/smoothie',
-        Three: 'http://thireejs.org/build/three.min',
-        //Three: '//i2dcui.appspot.com/geturl?url=http://threejs.org/build/three.min',
+        //Three: 'http://thireejs.org/build/three.min.js',
+        Three: '//i2dcui.appspot.com/geturl?url=http://threejs.org/build/three.min.js',
         ThreeTextGeometry: '//i2dcui.appspot.com/js/three/TextGeometry',
         ThreeFontUtils: '//i2dcui.appspot.com/js/three/FontUtils',
         ThreeDetector: '//i2dcui.appspot.com/geturl?url=http://threejs.org/examples/js/Detector',
@@ -85,7 +85,6 @@ cprequire_test(["inline:com-chilipeppr-widget-touchplate"], function(myWidget) {
             });
     });
     
-    
     chilipeppr.load("#test-serial-port", "http://fiddle.jshell.net/chilipeppr/vetj5fvx/show/light/",
 
     function () {
@@ -98,7 +97,7 @@ cprequire_test(["inline:com-chilipeppr-widget-touchplate"], function(myWidget) {
             //sp.consoleToggle();
         });
     });
-    
+
     // tinyg widget test load
     chilipeppr.load("#test-tinyg", "http://fiddle.jshell.net/chilipeppr/XxEBZ/show/light/",
 
@@ -145,7 +144,7 @@ cprequire_test(["inline:com-chilipeppr-widget-touchplate"], function(myWidget) {
             
         });
     });
-    
+
 
     // init my widget
     myWidget.init();
@@ -271,6 +270,8 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
         
         load: function ( json ) {
             
+            var loader = new THREE.ObjectLoader();
+            
             this.renderer = new THREE.WebGLRenderer( { antialias: true } );
             this.renderer.setClearColor(0xffffff);
             this.renderer.setPixelRatio( window.devicePixelRatio );
@@ -285,7 +286,7 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
             
             console.log("scene camera:", this.camera);
             
-            this.scene = this.loader.parse( json.scene );
+          //  this.scene = this.loader.parse( json.scene );
             this.scene.traverse(function(obj) {
                 obj.castShadow = true;
                 obj.receiveShadow = true;
