@@ -486,6 +486,48 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
 
         },
         
+        onAfterProbeDone: function(probeData) {
+            // probeData should be of the format
+            // {"e":1,"z":-7.844}
+            console.log("onAfterProbeDone. probeData:", probeData);
+            
+            // unsub so we stop getting events
+            this.watchForProbeEnd();
+            
+            // play good beep
+            this.audio.play();
+            
+            // turn off animation/reset buttons
+            
+            // swap button to stop
+            $('#com-chilipeppr-widget-touchplate .btn-touchplaterun').removeClass("btn-danger").text("Run");
+            
+            // start animation showing spindle descending
+            this.animInfiniteEnd();
+            
+            this.isRunning = false;
+            
+            // we take the z value returned and then add the plate height and make that
+            // machine coordinates offset
+            var plateHeight = $('#com-chilipeppr-widget-touchplate .heightplate').val();
+            if (isNaN(plateHeight)) plateHeight = 0;
+            console.log("plateHeight:", plateHeight);
+            var zoffset = probeData.z - plateHeight;
+            var gcode = "G28.3 Z" + plateHeight + "\n";
+            var id = "tp" + this.gcodeCtr++;
+            chilipeppr.publish("/com-chilipeppr-widget-serialport/jsonSend", {Id: id, D: gcode});
+            
+            // now back off a bit
+            var gcode = "G91 G0 Z2\n";
+            var id = "tp" + this.gcodeCtr++;
+            chilipeppr.publish("/com-chilipeppr-widget-serialport/jsonSend", {Id: id, D: gcode});
+
+            // back to absolute mode
+            var gcode = "G90\n";
+            var id = "tp" + this.gcodeCtr++;
+            chilipeppr.publish("/com-chilipeppr-widget-serialport/jsonSend", {Id: id, D: gcode});
+        },
+        
         watchForProbeEnd: function() {
             chilipeppr.unsubscribe("/com-chilipeppr-widget-serialport/recvline", this, this.onRecvLineForProbe);
         },
