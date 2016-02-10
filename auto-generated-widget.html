@@ -799,12 +799,12 @@ cpdefine("inline:com-chilipeppr-dlvp-widget-touchplate", ["chilipeppr_ready", /*
                         <tbody>
                             <tr>
                                 <td class = "td-1L">
-                                    <dd>- Runs from the current X-Y position</dd>
-                                    <dd>- Position touch probe</dd>
-                                    <dd>- Enter values for feedrate and height</dd>
-                                    <dd>- Click "Run" button</dd>
+                                    <dd>- Legacy touchplate routine</dd>
+                                    <dd>- Runs from current X-Y position</dd>
                                     <br>
-                                    <dd style="font-size: 12px; padding-left: 10px; padding-right: 10px"><i>Exercise caution after a subsequence tool changes without re-running this Widget (ex. "Go To Machine Home", "Go To G5x Zero"), there is a chance of crashing the tool.</i></dd>
+                                    <dd>Notes:</dd>
+                                    <dd style="font-size: 12px; padding-left: 10px; padding-right: 10px">Sets the machine’s absolute coordinate system (Coordinate System: G53) Z-value to zero</dd>
+                                    <br><dd style="font-size: 12px; padding-left: 10px; padding-right: 10px"><i>Exercise caution after job finishes or subsequence tool changes.  Selecting “Go To Machine Home” or “Go To G5x Zero” there is a chance of crashing the tooling into the machine bed.</i></dd>
                                 </td>
                                 <td class = "td-1R">
                                     <p><button type="button" id="run1" class="btn xbtn-xs btn-primary btn-touchplaterun1" style="width:100%;">Run</button></p>
@@ -835,12 +835,11 @@ cpdefine("inline:com-chilipeppr-dlvp-widget-touchplate", ["chilipeppr_ready", /*
                             <tr>
                                 <td class = "td-1L">
                                     <dd>- Runs from the current X-Y position</dd>
-                                    <dd>- Sets Z-zero for the current WCS</dd>
-                                    <dd>- Position touch probe</dd>
-                                    <dd>- Enter values for feedrate and height</dd>
                                     <br>
-                                    <dd>- Click "G5x Run" button to set G5x Z-zero</dd>
-                                    <dd>- Click "G92 Run" button to set temporary offset</dd>
+                                    <dd>Notes:</dd>
+                                    <dd span ="font-size: 12px; padding-left: 10px; padding-right: 10px">- “G5x Run” will set the current work coordinate system (G5x) Z-value to zero</dd>
+                                    <dd style="font-size: 12px; padding-left: 10px; padding-right: 10px">- “G92 Run” will set a temporary offset in the current work coordinate system. 
+                                    <i>Consider adding a G92.1 command at the end of your program to cancel the offset.</i></dd>
                                 </td>
                                 <td style="padding: 10px">
                                     <p>
@@ -873,14 +872,13 @@ cpdefine("inline:com-chilipeppr-dlvp-widget-touchplate", ["chilipeppr_ready", /*
                         <tbody>
                             <tr>
                                 <td class = "td-1L">
-                                    <dd>- Runs from the pre-defined G30 XYZ position</dd>
-                                    <dd>- Sets Z-zero for the current WCS</dd>
-                                    <dd>- Enter values for feedrate and height</dd>
-                                    <dd>- Enter Z-clearance value to raise head</dd>
-                                    <dd>- If the G30 position has not been defined, go to the G30 tab</dd>
+                                    <dd>- Runs from the pre-defined XYZ position</dd>
                                     <br>
-                                    <dd>- Click "G5x Run" button to set G5x Z-zero</dd>
-                                    <dd>- Click "G92 Run" button to set temporary offset</dd>
+                                    <dd>Notes:</dd>
+                                    <dd>- Head will rise to Z-clearance value before moving to fixed position.</dd>
+                                    <dd>- “G5x Run” will set the current work coordinate system (G5x) Z-value to zero.</dd>
+                                    <dd>- “G92 Run” will set a temporary offset in the current work coordinate system. 
+                                    <i>Consider adding a G92.1 command at the end of your program to cancel the offset.</i></dd>
                                 </td>
                                 <td style="padding: 10px">
                                     <p>
@@ -920,11 +918,12 @@ cpdefine("inline:com-chilipeppr-dlvp-widget-touchplate", ["chilipeppr_ready", /*
                         <tbody>
                             <tr>
                                 <td class ="td-1L" style = "text-align: left">
-                                    <dd>Defines the G30 position based on the mill's current position</dd>
+                                    <dd>Defines the fixed location for a machine mounted fixed touchplate</dd>
                                     <br>
-                                    <dd>- Move machine to the X & Y location above fixed touch plate.</dd>
-                                    <dd>- Adjust Z-height to ensure tool selection will clear the touchplate.</dd>
-                                    <dd>- Click button to set the G30 location</dd>
+                                    <dd>Notes:</dd>
+                                    <dd>- Position head’s X and Y axes over the touchplate.</dd>
+                                    <dd>- Adjust Z-height to ensure tooling will always clear the touchplate.</dd>
+                                    <dd>- Click button to set the XYZ location.</dd>
                                 </td>
                                 <td style="padding: 10px; text-align:center">
                                     <p><button type="button" id="run6" class="btn xbtn-xs btn-primary btn-touchplaterun6" style="width:80%;">G30 Current Position</button></p>
@@ -940,9 +939,13 @@ cpdefine("inline:com-chilipeppr-dlvp-widget-touchplate", ["chilipeppr_ready", /*
                     </p>
                     <dl>
                         <dt><b>General Notes</b></dt>
-                        <li>Probe cycle runs in the base Machine units of mm.
-                        </li>
-                        <li>Probing works in the Machine Coordinate system (G53)
+                        <li>The Probe Cycle runs in the base Machine units of 
+                            mm (G21), and in the machine’s absolute coordinate 
+                            system (MCS or G53) regardless of the parts defined 
+                            units or coordinate system. If the gcode program 
+                            does not define the units, after running the routine 
+                            ensure the machine is set to correct units (G20/G21) 
+                            to match the job.
                         </li>
                     </dl>
                     
@@ -956,105 +959,71 @@ cpdefine("inline:com-chilipeppr-dlvp-widget-touchplate", ["chilipeppr_ready", /*
                   
                     <dl>
                         <dt><b>Probe Operations</b></dt>
-                        <li>Run the touchplate widget after each tool change.
-                        </li>
-                        <li>Afterwards the Z-value is set to the top surface 
-                            on which the touchplate rests.</li>
-                        <li>During the operation; the machine switches to G53 
-                            mode, machine (absolute) coordinates. The program 
-                            also runs in G21 mode (mm units).</li>
-                        <dd><li>Exercise caution after a subsequence tool 
-                            change without re-running this Widget.</li></dd>
-                        <dd>ex. "<i>Go To Machine Home</i>", or "<i>Go To G5x 
-                            Zero</i>", there is a chance of crashing the tool 
-                            into the workbed or workpiece.</i></dd>
+                        <li>Enter the feedrate, height of probe, and z-clearance (fixed tab) values.</li>
+                        <li>After the routine is finished, the Z-zero value is set to the surface on which the touchplate rests based on the plate height input value.</li>
+                        <li>Run this widget after each tool change.</li>
+                        <dt><li>Exercise caution after a subsequence tool change without re-running this Widget.</li></dt>
+                        <dd>If you use the go to home/zero commands (Machine or WCS), there is a chance of crashing the tool into the workbed or workpiece.</dd>
+                    </dl>
+                    
+                    <dl>
+                        <dt><b>Tips</b></dt>
+                        <li>Placing the touchplate on the machine bed will define the part’s Z-zero to the bottom of the material stock.</li>
+                        <li>This option will save wear and tear on the machine’s waste board.</li>
+                        <li>To define the stock top as Z-zero, add the nominal thickness of the material to the input value for the height of probe.</li>
                     </dl>
                   
                     <dl><hr>
                         <dt id="mcs"><b>MCS</b> (G53) -</dt>
-                        <dd>- Probing sequence runs from the machine’s current 
-                            X-Y position</dd>
-                        <dd>- Clamp workpiece or stock into machine</dd>
-                        <dd>- During the operation; the machine switches to 
-                            G53 mode, machine (absolute) coordinates. The 
-                            program also runs in G21 mode (mm units).</dd>
-                        <dd><i>- Exercise caution after a subsequence tool 
-                            change without re-running this Widget (ex. "Go To 
-                            Machine Home", "Go To G5x Zero"), there is a 
-                            chance of crashing the tool.</i>
-                    </dd>
-
+                        <dd>- Probing sequence runs from the machine’s current X-Y position.</dd>
+                        <dd>- Locate the moveable touchplate on the desired work surface, and position the tool so it is located above (~1” or 25mm) the touchplate.</dd>
+                        <dd>- Once the job(s) is/are complete, consider rehoming the Machine’s absolute Z-axis coordinate. <i>(G28.2 z0, if limit switches are installed; or adjust manually and use the G28.3 z0, if no limit switches).</i></dd>
+                        
                     <ul><dt>Notes:</dt>
-                        <dd>- This routine does <u>not</u> set G5x Z-axis to 
-                            zero(0).</dd>
-                        <dd>- Any offset coordinate systems (G54, G55, etc) 
-                            are readjusted based on the new Machine Z-0 value.
-                            </dd>
-                        <dd>- The G5x Z-axis will not be zero(0), unless G5x 
-                            is mapped to the machine coordinate system (MCS).
-                            </dd>
-                        <dd>- This routine is useful if you do not utilize 
-                            work coordinates (WCS), or if current WCS (ex. 
-                            G54) is mapped to the Machine’s absolute (MCS) 
-                            coordinates.</dd>
-                        <dd>- <i>Once the job(s) is/are complete, consider 
-                            rehoming the Machine’s Z-axis coordinate (G28.2 
-                            z0, if limit switches are installed; or adjust 
-                            manually with the G28.3 z0, if no limit switches).
-                            </i></dd>
+                        <dd>- This routine has been installed to support legacy versions of Chilipeppr.</dd>
+                        <dd>- This routine does <u>not</u> set G5x Z-axis to zero(0), unless the WCS is mapped to the machines's absolute coordinate system (MCS>.</dd>
+                        <dd>- Any offset coordinate systems (G54, G55, etc) are readjusted based on the new Machine Z-0 value. (The offset values in G10 L2 Pn Zn are not changed).</dd>
+                        <dd>-	This routine is useful if you do not utilize work coordinates (WCS), or if current WCS (ex. G54) is mapped to the Machine’s absolute (MCS) coordinates.</dd>
                     </ul>
+                    
+                    <ul><dt>Cautions:</dt>
+                        <dd>- If homing limit switches have been installed and the machine is homed (G28.2 X0 Y0 Z0), then Z-0 was set to the top of the Z-axis travel (Z max).</dd>
+                        <dd>- This routine will remap the Z-axis zero value to near or on the machine bed.</dd>
+                        <dd>- Consider resetting the soft limit Z min value [ztn] to define new work volume travel limits (Ex. Thickness of part), or use one of the WCS routines.</dd>
+                    </ul>                    
 
                     <dl><hr>
                         <dt id="wcsfl">WCS (G5x) Floating -</dt>
-                        <dd>- Probing sequence runs from the machine’s current 
-                            X-Y position</dd>
-                        <dd>- Clamp workpiece or stock into machine</dd>
-                        <dd>- Locate the moveable touchplate on the desired 
-                            work surface, and position the tool so it is 
-                            located above the touchplate</dd>
-                        <dd>- <i>Useful when the top of the material is 
-                            defined as workpiece Z0.</i></dd>
-                        <dd>- Run MCS floating probing sequence</dd>
-                        <dd>- Sets the active G5x (machine coordinate system) 
-                            Z-value to zero
-                        </dd>
+                        <dd>- Probing sequence runs from the machine’s current X-Y position</dd>
+                        <dd>- Locate the moveable touchplate on the desired work surface, and position the tool so it is located above (~1” or 25mm) the touchplate.</dd>
+                        
 
                     <ul><dt>Notes:</dt>
-                        <dd>- Useful if you keep the same tool loaded,</dd>
-                        <dd>- or if have a defined X-0, Y-0 setup that is 
-                            always utilized</dd>
-                        <dd>- This routine rewrites the G5x Z0 parameter (G10 
-                            L2 Px Zn)</dd>
-                        <dd>- <i>If workpiece zero is the bottom of the part, 
-                            consider utilizing the G92 z-offset option that 
-                            can be easily turned off after running the job(s).
-                            </i></dd>
+                        <dd>- This routine will set the G5x Z-axis to zero(0).</dd>
+                        <dd>- Useful if you always keep the same tool loaded, or if you have a defined X-0, Y-0 setup locations (ex. G54 – G59 WCS).</dd>
+                        <dd>- The routine only rewrites the Z-0 parameter (G10 L2 P# Zn) and does not affect the X and Y axis zero locations.</dd>
                     </ul>
 
                     <dl><hr>
                         <dt id="wcsfx"><b>WCS</b> (G5x) Fixed -</dt>
-                        <dd>- The touchplate is fixed to the work surface of 
-                            the machine</dd>
-                        <dd>- Location is established with from a pre-
-                            established G30 location</dd>
-                        <dd>- Use G30.1 to set the position for G30.</dd>
-                        <dd><i>- Useful when the bottom of the material is 
-                            defined as workpiece Z0.</i></dd>
-                        <dd>- Probing sequence runs from predefined X-Y 
-                            position</dd>
-                        <dd>- Run MCS fixed probing sequence</dd>
-                        <dd>- Sets the active G5x (machine coordinate system) 
-                            Z-value to zero(0).</dd>      
+                        <dd>- Utilizes a touchplate that is fixed to the work surface of the machine.</dd>
+                        <dd>- The probing sequence moves (via G30) the machine to this predetermined location XYZ.</dd>
+                        <dd>- To clear the workpiece, the head is first raised to the z-clearance value and then translates to the fixed touchplate location.</dd>
+                        <dd>- If the fixed location has not yet been defined, use the G30 tab to set this value.</dd>
 
                     <ul><dt>Notes:</dt>
-                        <dd>- Useful when Z-zero is defined as the bottom of 
-                            the workpiece (i.e. top of the wasteboard).</dd>
-                        <dd>- If workpiece zero is defined to be the top of 
-                            the stock, add the nominal thickness of the stock 
-                            to the probe height.</dd>
-                        <dd>- This routine rewrites the G5x Z0 parameter (G10 
-                            L2 Px Zn)</dd>
+                        <dd>- This routine will set the machine bed as Z-0 in the G5x coordinate system.</dd>
+                        <dd>- To make the top of the part Z-0, add the nominal thickness of the material to the probe height input value.</dd>
                     </ul>
+                    </dl>
+
+                    <dl><hr>
+                        <dt><b>WCS</b> (G5x) G92 offset -</dt>
+                        <dd>- Useful if you keep a pre-defined Z-0 that is a safe distance away from the machine bed.</dd>
+                        <dd>- The G92 offset will establish a temporary Z-0 offset until it is turned off.</dd>
+                        <dd>- Once the job has run, turn off the offset (via G92.1) and the Z-0 value will revert back to the defined value for the selected coordinate system.</dd>
+                        <dd>- Selected from the floating tab, the sequence will run from the machines’ current X-Y position.</dd>
+                        <dd>- Selected from the fixed tab, the sequence will move to the fixed plate location before running the probe cycle.</dd>
                     </dl>
 
                 </div>
