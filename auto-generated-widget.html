@@ -3,9 +3,8 @@
 
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <!-- fresh touchplate build from git@masterlefty/baseline-widget-template-->
 
-    <title>Widget / touchplate</title>
+    <title>Dlvp Widget / Touchplate</title>
 
     <!-- ChiliPeppr is based on bootstrap CSS. -->
     <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
@@ -17,58 +16,47 @@
     <style type='text/css'>
 /* CSS for ChiliPeppr Widget */
 
-#com-chilipeppr-widget-touchplate {
+#com-chilipeppr-dlvp-widget-touchplate {
    
 }
 
-#com-chilipeppr-widget-touchplate .nav-tabs {
-    padding: 2px 6px;
+#com-chilipeppr-dlvp-widget-touchplate .nav-tabs {
+    padding: 1px 4px;
 }
 
-#com-chilipeppr-widget-touchplate .panel-body{
-   padding: 0;
+#com-chilipeppr-dlvp-widget-touchplate .panel-body{
    position: relative;
+   padding: 0px;
+}
+
+#com-chilipeppr-dlvp-widget-touchplate .settings-notes{
    height: 250px;
+   overflow-y: scroll;
+   border: 1px solid gray;
+   padding-left: 10px;
+   padding-right: 10px;
 }
 
-#com-chilipeppr-widget-touchplate .settings-overlay{
-   position: absolute;
-   top: 55px;
-   left: 40%;
-   bottom: 10px;
-   right: 10px;
-   border: 0px solid red;
+#com-chilipeppr-dlvp-widget-touchplate .td-1L{
+   width: 50%;
+   padding: 5px;
+   padding-top: 10px;
+   font-size: 13px;
 }
 
-#com-chilipeppr-widget-touchplate .input-grouo-addon{
+#com-chilipeppr-dlvp-widget-touchplate .td-1R{
+   padding: 10px;
+}
+
+#com-chilipeppr-dlvp-widget-touchplate .input-group-addon{
    font-size: 10px;
 }
 
-#com-chilipeppr-widget-touchplate .panel-footer{
-   font-size: 11px;
-   padding: 0;
-   margin: 0;
-}
-
-#com-chilipeppr-widget-touchplate-status{
-   background: none;
-   background-color: #f5f5f5;
-   border: none;
-}
-
-#com-chilipeppr-widget-touchplate .settings-notes{
-   position: absolute;
-   top: 55px;
-   bottom: 10px;
-   right: 10px;
-   height: 190px;
-   overflow-y: scroll;
-}
     </style>
 
     <script type='text/javascript'>
     //<![CDATA[
-/* global requirejs cprequire cpdefine chilipeppr THREE scene camera */
+/* global requirejs cprequire cpdefine chilipeppr transferCode */
 // Defining the globals above helps Cloud9 not show warnings for those variables
 
 // ChiliPeppr Widget/Element Javascript
@@ -97,34 +85,14 @@ requirejs.config({
         // Example of how to define the key (you make up the key) and the URL
         // Make sure you DO NOT put the .js at the end of the URL
         // SmoothieCharts: '//smoothiecharts.org/smoothie',
-        //Three: 'http://thireejs.org/build/three.min.js',
-        Three: '//i2dcui.appspot.com/geturl?url=http://threejs.org/build/three.min.js',
-        ThreeTextGeometry: '//i2dcui.appspot.com/js/three/TextGeometry',
-        ThreeFontUtils: '//i2dcui.appspot.com/js/three/FontUtils',
-        ThreeDetector: '//i2dcui.appspot.com/geturl?url=http://threejs.org/examples/js/Detector',
-        ThreeTrackballControls: '//i2dcui.appspot.com/geturl?url=http://threejs.org/examples/js/controls/TrackballControls',
-        ThreeOrbitControls: '//threejs.org/examples/js/controls/OrbitControls',
-        ThreeHelvetiker: '//i2dcui.appspot.com/js/three/threehelvetiker',
-        ThreeTypeface: 'https://superi.googlecode.com/svn-history/r1953/trunk/MBrand/MBrand/Scripts/typeface-0.15',
-        ThreeTween: '//i2dcui.appspot.com/js/three/tween.min',
-        ThreeBufferGeometryUtils: '//i2dcui.appspot.com/js/three/BufferGeometryUtils'
-
     },
     shim: {
         // See require.js docs for how to define dependencies that
         // should be loaded before your script/widget.
-        ThreeTextGeometry: ['Three'],
-        ThreeFontUtils: ['Three', 'ThreeTextGeometry'],
-        ThreeHelvetiker: ['Three', 'ThreeTextGeometry', 'ThreeFontUtils'],
-        ThreeTrackballControls: ['Three'],
-        ThreeTween: ['Three'],
-        ThreeSparks: ['Three'],
-        ThreeParticle: ['Three'],
-        ThreeBufferGeometryUtils: ['Three']
     }
 });
 
-cprequire_test(["inline:com-chilipeppr-widget-touchplate"], function(myWidget) {
+cprequire_test(["inline:com-chilipeppr-dlvp-widget-touchplate"], function(myWidget) {
 
     // Test this element. This code is auto-removed by the chilipeppr.load()
     // when using this widget in production. So use the cpquire_test to do things
@@ -144,77 +112,65 @@ cprequire_test(["inline:com-chilipeppr-widget-touchplate"], function(myWidget) {
 
     $('body').prepend('<div id="testDivForFlashMessageWidget"></div>');
 
-    chilipeppr.load(
-        "#testDivForFlashMessageWidget",
-        "http://fiddle.jshell.net/chilipeppr/90698kax/show/light/",
+    chilipeppr.load("#testDivForFlashMessageWidget", "http://fiddle.jshell.net/chilipeppr/90698kax/show/light/",
         function() {
             console.log("mycallback got called after loading flash msg module");
             cprequire(["inline:com-chilipeppr-elem-flashmsg"], function(fm) {
                 //console.log("inside require of " + fm.id);
                 fm.init();
             });
-    });
+        }
+    );
     
     chilipeppr.load("#test-serial-port", "http://fiddle.jshell.net/chilipeppr/vetj5fvx/show/light/",
-
-    function () {
-        cprequire(
-        ["inline:com-chilipeppr-widget-serialport"],
-
-        function (sp) {
-            sp.setSingleSelectMode();
-            sp.init(null, "tinyg");
-            //sp.consoleToggle();
+        function() {
+            cprequire(["inline:com-chilipeppr-widget-serialport"],
+    
+                function(sp) {
+                    sp.setSingleSelectMode();
+                    sp.init(null, "tinyg");
+                    //sp.consoleToggle();
+                });
         });
-    });
-
+    
     // tinyg widget test load
     chilipeppr.load("#test-tinyg", "http://fiddle.jshell.net/chilipeppr/XxEBZ/show/light/",
-
-    function () {
-        cprequire(
-        ["inline:com-chilipeppr-widget-tinyg"],
-
-        function (tinyg) {
-            tinyg.init();
+        function() {
+            cprequire(["inline:com-chilipeppr-widget-tinyg"],
+    
+                function(tinyg) {
+                    tinyg.init();
+                });
         });
-    });
     
     // axes widget test load
-    chilipeppr.load(
-        "#test-axes",
-        "http://fiddle.jshell.net/chilipeppr/gh45j/show/light/",
-
-    function () {
-        cprequire(
-        ["inline:com-chilipeppr-widget-xyz"],
-
-        function (xyz) {
-            xyz.init();
+    chilipeppr.load("#test-xyz","http://fiddle.jshell.net/chilipeppr/gh45j/show/light/",
+        function() {
+            cprequire(["inline:com-chilipeppr-widget-xyz"],
+    
+                function(xyz) {
+                    xyz.init();
+                });
         });
-    });
     
     // Serial Port Console Log Window
     // http://jsfiddle.net/chilipeppr/JB2X7/
     // NEW VERSION http://jsfiddle.net/chilipeppr/rczajbx0/
     // The new version supports onQueue, onWrite, onComplete
 
-    chilipeppr.load("#test-console",
-        "http://fiddle.jshell.net/chilipeppr/rczajbx0/show/light/",
-
-    function () {
-        cprequire(
-        ["inline:com-chilipeppr-widget-spconsole"],
-
-        function (spc) {
-            // pass in regular expression filter as 2nd parameter
-            // to enable filter button and clean up how much
-            // data is shown
-            spc.init(true, /^{/);
-            
+    chilipeppr.load("#test-console", "http://fiddle.jshell.net/chilipeppr/rczajbx0/show/light/",
+        function() {
+            cprequire(
+                ["inline:com-chilipeppr-widget-spconsole"],
+    
+                function(spc) {
+                    // pass in regular expression filter as 2nd parameter
+                    // to enable filter button and clean up how much
+                    // data is shown
+                    spc.init(true, /^{/);
+    
+                });
         });
-    });
-
 
     // init my widget
     myWidget.init();
@@ -224,18 +180,17 @@ cprequire_test(["inline:com-chilipeppr-widget-touchplate"], function(myWidget) {
 } /*end_test*/ );
 
 // This is the main definition of your widget. Give it a unique name.
-cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three',/* other dependencies here */ ], function() {
+cpdefine("inline:com-chilipeppr-dlvp-widget-touchplate", ["chilipeppr_ready", /* other dependencies here */ ], function() {
     return {
         /**
          * The ID of the widget. You must define this and make it unique.
          */
-        id: "com-chilipeppr-widget-touchplate", // Make the id the same as the cpdefine id
-        name: "Widget / touchplate", // The descriptive name of your widget.
-        desc: "This widget helps you use a touch plate to create your Z zero offset.", // A description of what your widget does
+        id: "com-chilipeppr-dlvp-widget-touchplate", // Make the id the same as the cpdefine id
+        name: "Dlvp Widget / Touchplate", // The descriptive name of your widget.
+        desc: "This development widget helps you use a touch plate to create your Z zero offset..", // A description of what your widget does
         url: "http://raw.githubusercontent.com/masterlefty/widget-touchplate/master/auto-generated-widget.html",       // The final URL of the working widget as a single HTML file with CSS and Javascript inlined. You can let runme.js auto fill this if you are using Cloud9.
         fiddleurl: "http://ide.c9.io/masterlefty/widget-touchplate", // The edit URL. This can be auto-filled by runme.js in Cloud9 if you'd like, or just define it on your own to help people know where they can edit/fork your widget
         githuburl: "http://github.com/masterlefty/widget-touchplate", // The backing github repo
-        // githuburl: "https://github.com/masterlefty/widget-touchplate", // The backing github repo
         testurl: "http://widget-touchplate-masterlefty.c9users.io/widget.html",   // The standalone working widget so can view it working by itself
         /**
          * Define pubsub signals below. These are basically ChiliPeppr's event system.
@@ -248,7 +203,7 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
          */
         publish: {
             // Define a key:value pair here as strings to document what signals you publish.
-            '/onExampleGenerate': 'Example: Publish this signal when we go to generate gcode.'
+            //'/onExampleGenerate': 'Example: Publish this signal when we go to generate gcode.'
         },
         /**
          * Define the subscribe signals that this widget/element owns or defines so that
@@ -273,6 +228,9 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
          * or elements, that this widget/element subscribes to.
          */
         foreignSubscribe: {
+            '/com-chilipeppr-interface-cnccontroller/axes': 'We want X,Y,Z,A,MX,MY,MZ,MA axis updates.',
+            '/com-chilipeppr-interface-cnccontroller/coords': 'Track which is active: G54, G55, etc.',
+            '/com-chilipeppr-widget-3dviewer/unitsChanged': 'We need to know which units the Gcode is utilizing.'
             // Define a key:value pair here as strings to document what signals you subscribe to
             // that are owned by foreign/other widgets.
             // '/com-chilipeppr-elem-dragdrop/ondropped': 'Example: We subscribe to this signal at a higher priority to intercept the signal. We do not let it propagate by returning false.'
@@ -281,313 +239,227 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
          * All widgets should have an init method. It should be run by the
          * instantiating code like a workspace or a different widget.
          */
-
-        isInitted: false, // keep track of our one-time init
-        
         init: function() {
             console.log("I am being initted. Thanks.");
 
             this.setupUiFromLocalStorage();
             this.btnSetup();
             this.forkSetup();
+            this.isInitted = true;
             
-        // scripting from current touchplate widget
-            this.init3d();
-
             // load audio
             this.audio = new Audio('http://chilipeppr.com/audio/beep.wav');
-            this.inInitted = true;
-
-            // issue a resize later
-            // issue resize event so other widgets can reflow
-            $(window).trigger('resize');
-        // end scripting from current touchplate widget
+            
+            /**
+             * Setup Run Buttons
+             * Each tab has buttons to run the various touchplate configurations
+             * as defined on each tab
+             */
+            // Tab 1 - MCS G53 machine coordinate system  - moveable touchplate
+            $('#' + this.id + ' .btn-touchplaterun1').click(this.onRun.bind(this));
+            
+            // Tab 2 - WCS G5x work coordinate system - moveable touchplate
+            $('#' + this.id + ' .btn-touchplaterun2').click(this.onRun.bind(this));
+            $('#' + this.id + ' .btn-touchplaterun3').click(this.onRun.bind(this));
+            
+            // Tab 3 - WCS G5x work coordinate system - fixed touchplate
+            $('#' + this.id + ' .btn-touchplaterun4').click(this.onRun.bind(this));
+            $('#' + this.id + ' .btn-touchplaterun5').click(this.onRun.bind(this));
+            
+            // Tab 4 - G30 Goto Position - defines location of fixed touchplate
+            $('#' + this.id + ' .btn-touchplaterun6').click(this.onG30.bind(this));
 
             console.log("I am done being initted.");
         },
         
-    // scripting from current touchplate widget
-        audio: null,
-        // loader: new THREE.ObjectLoader(),
-        camera: null, 
-        scene: null, 
-        renderer: null,
-        scripts: {},
-        dom: undefined,
-        width: 500,
-        height: 500,
-        touchplate: null, // threejs group
-        spindle: null, // threejs group
-        light: null, // threejs light
-        
-        init3d: function() {
-            
-            // init the threejs stuff
-            this.width = $('#' + this.id + ' .panel-body').width();
-            this.height = 210;
-            
-            this.load(this.threeObj);
-            console.log("scene width:", this.width, "height:", this.height);
-            this.setSize(this.width, this.height);
-            $('#' + this.id + ' .panel-body').prepend( this.dom );
-            $(window).resize(this.onresize.bind(this));
-            
-            // setup run button
-            $('#' + this.id + ' .btn-touchplaterun').click(this.onRun.bind(this));
-            // run intro anim
-            this.introAnim();
-        },
-        
-        load: function ( json ) {
-            
-            var loader = new THREE.ObjectLoader();
-            
-            this.renderer = new THREE.WebGLRenderer( { antialias: true } );
-            this.renderer.setClearColor(0xffffff);
-            this.renderer.setPixelRatio( window.devicePixelRatio );
-            // cast shadows
-            this.renderer.shadowMapEnabled = true;
-            // to antialias the shadow
-            this.renderer.shadowMapSoft = true;
-            this.renderer.shadowMapType = THREE.PCFSoftShadowMap;
-            
-            this.camera = this.loader.parse( json.camera );
-            this.camera.setViewOffset(this.width * 3, this.height, this.width * 1.4, 0, this.width, this.height);
-            
-            console.log("scene camera:", this.camera);
-            
-          //  this.scene = this.loader.parse( json.scene );
-            this.scene.traverse(function(obj) {
-                obj.castShadow = true;
-                obj.receiveShadow = true;
-                console.log("traversed scene to obj:", obj);
-            });
-            
-            //this.scene.castShadow = true;
-            var light = this.scene.getObjectByName( "SpotLight 1" );
-            this.light = light;
-            light.castShadow = true;
-            //light.shadowCameraVisible = true;
-            
-            light.shadowMapWidth = 2048;
-            light.shadowMapHeight = 2048;
-
-            light.shadowCameraFov = 20;
-            
-            var touchplate = this.scene.getObjectByName( "GroupTouchPlate" );
-            this.touchplate = touchplate;
-            
-            var lineMat = new THREE.LineDashedMaterial( { color: 0x0000ff } );
-            var lineGeo = new THREE.Geometry();
-            lineGeo.vertices.push(new THREE.Vector3( 5, 11.15, 0 ));
-            lineGeo.vertices.push(new THREE.Vector3( 20, 11.15, 0 ));
-            lineGeo.vertices.push(new THREE.Vector3( 20, 0.1, 0 ));
-            lineGeo.vertices.push(new THREE.Vector3( 10, 0.1, 0 ));
-            var line = new THREE.Line(lineGeo, lineMat); //, THREE.LineStrip);
-            line.castShadow = true;
-            touchplate.add(line);
-            
-            var spindle = this.scene.getObjectByName( "GroupSpindle" );
-            this.spindle = spindle;
-            spindle.position.setY(5);
-            
-            console.log("touch plate scene:", this.scene);
-            
-            this.scripts = {
-                keydown: [],
-				keyup: [],
-				mousedown: [],
-				mouseup: [],
-				mousemove: [],
-				update: []
-            };
-            
-            for ( var uuid in json.scripts ) {
-                var object = this.scene.getObjectByProperty( 'uuid', uuid, true );
-                var sources = json.scripts[ uuid ];
-                for ( var i = 0; i < sources.length; i ++ ) {
-                    var script = sources[ i ];
-                    var events = ( new Function( 'player', 'scene', 'keydown', 'keyup', 'mousedown', 'mouseup', 'mousemove', 'update', script.source + '\nreturn { keydown: keydown, keyup: keyup, mousedown: mousedown, mouseup: mouseup, mousemove: mousemove, update: update };' ).bind( object ) )( this, scene );
-                    for ( var name in events ) {
-                        if ( events[ name ] === undefined ) continue;
-                        if ( this.scripts[ name ] === undefined ) {
-                            console.warn( 'APP.Player: event type not supported (', name, ')' );
-                        continue;
-                    }
-                    this.scripts[ name ].push( events[ name ].bind( object ) );
-                    }
-                }
-            }
-            this.dom - this.renderer.domElement;
-        },
-        
-        setSize: function ( width, height ) {
-            
-            this.width = width;
-			this.height = height;
-			
-			this.camera.aspect = this.width / this.height;
-			this.camera.updateProjectionMatrix();
-			
-			this.renderer.setSize( width, height );
-        },
-        
-        introAnim: function() {
-            
-            var v = this.spindle.position.clone();
-            
-            // start
-            var startx = v.x - 5;
-            var starty = v.y + 12;
-            var startfov = 45;
-            
-            // end
-            var endx = v.x - 5;
-            var endy = v.y + 10;
-            var endfov = this.camera.fov;
-            
-            this.steps = 50;
-            this.deltax = (endx - startx) / this.steps;
-            this.deltay = (endy - starty) / this.steps;
-            this.deltafov = (endfov - startfov) / this.steps;
-            
-            this.camera.fov = startfov;
-            this.camera.updateProjectionMatrix();
-            
-            v.x = startx;
-            v.y = starty;
-            
-            this.curV = v;
-            this.curFov = startfov;
-            this.curStep = 0;
-            
-            this.camera.lookAt(this.curV);
-            this.animate();
-            
-            setTimeout(this.introAnimStep.bind(this), 5);
-        },
-        
-        deltax: null,
-        deltay: null,
-        deltafov: null,
-        curV: null,
-        curFov: null,
-        curStep: null,
-        steps: null,
-        
-        introAnimStep: function() {
-            
-            this.curStep++;
-            
-            this.curV.x += this.deltax;
-            this.curV.y += this.deltay;
-            this.curFov += this.deltafov;
-            
-            console.log("introAnimStep. this.curV:", this.curV, "curFov:", this.curFov);
-            
-            this.camera.lookAt(this.curV);
-            this.camera.fov = this.curFov;
-            this.camera.updateProjectionMatrix();
-            this.animate();
-            
-            if (this.curStep < this.steps)
-                setTimeout(this.introAnimStep.bind(this), 5);
-        },
-        
-        request: null,
-        animate: function ( time ) {
-            this.renderer.render( this.scene, this.camera );
-        },
-        
-        setCamera: function ( value ) {
-            camera = value;
-			camera.aspect = this.width / this.height;
-			camera.updateProjectionMatrix();
-        },
-        
         /**
-         * animInfinite call
+         * Call this method on button click to begin running the touch plate
+         * code and set the Z-zero value.
          */
-        
-        
         gcodeCtr: 0,
         isRunning: false,
+        transferCode: null,
+        runCode: null,
         
         onRun: function(evt) {
             // when user clicks the run button
-            console.log("user clicked run button. evt:", evt);
+            console.log("user clicked run button. evt:", evt, event.target.id);
+            
+            // define variable to determine which subroutine to run based on
+            // user selection through the tabs
+            var runCode = event.target.id;
+            // logs which button was clicked
+            console.log("this is the runCode:", runCode);
+            
+            // transfer runCode to read only global variable
+            transferCode = runCode;
+            
+            // Stop controller upon completion of probing cycle
+            console.log("The transferCode is:", transferCode);
             
             if (this.isRunning) {
-                // we need to stop
+
+                // Stop controller
+                var id = "tp" + this.gcodeCtr++;
+                var gcode = "!\n";
+                chilipeppr.publish("/com-chilipeppr-widget-serialport/jsonSend", {Id: id, D: gcode});
+
                 
-                // fire off cancel to cnc
+                // Swap clicked button to run
+                if (runCode == "run1") {
+                    // Run WCS (G53) button
+                    $('#' + this.id + ' .btn-touchplaterun1').removeClass("btn-danger").text("Run WCS");
+                    this.isRunning = false;
+                    
+                } else if (runCode == "run2") {
+                    // Run G5x (MCS) button for floating touchplate
+                    $('#' + this.id + ' .btn-touchplaterun2').removeClass("btn-danger").text("G5x Run");
+                    this.isRunning = false;
+                    
+                }else if (runCode == "run3") {
+                    // Run G92 (MCS) button for floating touchplate
+                    $('#' + this.id + ' .btn-touchplaterun3').removeClass("btn-danger").text("G92 Run");
+                    this.isRunning = false;
+                    
+                } else if (runCode == "run4") {
+                     // Run G5x (MCS) button for fixed touchplate
+                    $('#' + this.id + ' .btn-touchplaterun4').removeClass("btn-danger").text("G5x Run4");
+                    this.isRunning = false;
+
+                } else {
+                     // Run G92 (MCS) button for fixed touchplate
+                    $('#' + this.id + ' .btn-touchplaterun5').removeClass("btn-danger").text("G92 Run5");
+                    this.isRunning = false; 
+                }
+
+            } else {
+                
+                // Start probing process
+                
+                this.isRunning = true;
+                // Start controller and swap button to stop
+                $('#' + this.id + ' .btn-touchplate' + runCode).addClass("btn-danger").text("Stop");
+                
+                // Get user feedrate from input group
+                var fr = $('#' + this.id + ' .frprobe').val();
+                var zclr = $('#' + this.id + ' .zclear').val();
+                
+                // Start watch for circuit closing, subscribe to recvline
+                this.watchForProbeStart();
+               
+                // G30 Probe cycle runs an additional routine to move the head
+                // to the fixed probe position befor running the probe cycle
+                if (runCode == "run4" || runCode == "run5") {
+                    // Raise head to clearance height and move to G30 position
+                    id = "tp" + this.gcodeCtr++;
+                    gcode = "G21 G91 G30 Z" + zclr + "\n";
+                    chilipeppr.publish("/com-chilipeppr-widget-serialport/jsonSend", {Id: id, D: gcode});
+                }
+                
+                // Run the G38.2 probe cycle for all buttons
+                
+                // Set to G21 mm and G91 relative coordinates
+                id = "tp" + this.gcodeCtr++;
+                var gcode = "G21 G91 (Use mm and rel coords)\n";
+                chilipeppr.publish("/com-chilipeppr-widget-serialport/jsonSend", {Id: id, D: gcode});
+                
+                // Run G38 Probe Cycle
+                id = "tp" + this.gcodeCtr++;
+                gcode = "G38.2 Z-20 F" + fr + "\n";
+                chilipeppr.publish("/com-chilipeppr-widget-serialport/jsonSend", {Id: id, D: gcode});
+                id = "tp" + this.gcodeCtr++;
+            }
+        },
+        
+        /**
+         * Call this method when the G30 define button is clicked on tab 4.
+         * The G30 Tab 4 will create a defined position, through a G30.1 command 
+         * that locates a fixed touchplate. Send G30.1 - This will "remember" the 
+         * absolute position. This position remains constant regardless of what
+         * coordinate system is in effect.
+         */
+        gcodeCtr: 0,
+        isRunning: false,
+        runCode: null,
+        
+        onG30: function(evt) {
+            // when user clicks the G30 button
+            console.log("user clicked run button. evt:", evt, event.target.id);
+            
+            // define variable to determine which subroutine to run based on
+            // user selection through the tabs
+            var runCode = event.target.id;
+            // logs which button was clicked
+            console.log("this is the runCode:", runCode);
+            
+            if (this.isRunning) {
+                
+                // Stop controller
                 var id = "tp" + this.gcodeCtr++;
                 var gcode = "!\n";
                 chilipeppr.publish("/com-chilipeppr-widget-serialport/jsonSend", {Id: id, D: gcode});
                 
-                // swap button to stop
-                $('#' + this.id + ' .btn-touchplaterun').removeClass("btn-danger").text("Run");
-                
-                // start animation showing spindle descending
-                this.animInfiniteEnd();
-                
-                this.isRunning = false;
-                
+                // Swap selected button to run
+                    $('#' + this.id + ' .btn-touchplaterun6').removeClass("btn-danger").text("G30 Fixed Location");
+                    this.isRunning = false;
             } else {
                 
-                // we need to run the whole darn process
+                // Start process
                 this.isRunning = true;
-                //this.audio.play();
                 
-                // swap button to stop
-                $('#' + this.id + ' .btn-touchplaterun').addClass("btn-danger").text("Stop");
+                // Swap selected button to stop
+                $('#' + this.id + ' .btn-touchplaterun6').addClass("btn-danger").text("Stop");
                 
-                // get user feedrate
-                var fr = $('#' + this.id + ' .frprobe').val();
-                
-                // now start watching z
-                this.watchForProbeStart();
-                
-                // send the probe command to start the movement
-                var id = "tp" + this.gcodeCtr++;
-                var gcode = "G21 G91 (Use mm and rel coords)\n";
-                chilipeppr.publish("/com-chilipeppr-widget-serialport/jsonSend", {Id: id, D: gcode});
+                // Send command to set the G30 location
                 id = "tp" + this.gcodeCtr++;
-                gcode = "G38.2 Z-20 F" + fr + "\n";
+                gcode = "G30.1 \n";
                 chilipeppr.publish("/com-chilipeppr-widget-serialport/jsonSend", {Id: id, D: gcode});
                 
-                
-                // start animation showing spindle descending
-                this.animInfiniteStart();
+                // Swap selected button to run
+                    $('#' + this.id + ' .btn-touchplaterun6').removeClass("btn-danger").text("G30 Fixed Location");
+                    this.isRunning = false;
             }
         },
-        
-         isAnimInfiniteRunning: false,
-        animInfiniteCallback: null,
-        
-        animInfiniteStart: function() {
-            this.isAnimInfiniteRunning = true;
-            this.animInfiniteCallback = setTimeout(this.animInfinite.bind(this), 10);
-        },
-        
-        animInfiniteEnd: function() {
-            this.isAnimInfiniteRunning = false;
-        },
-        
-        animInfinite: function() {
-            // move down the spindle
-            console.log("about to move the spindle down. this.spindle.position:", this.spindle.position);
-            this.spindle.position.setY(this.spindle.position.y - 0.3);
-            if (this.spindle.position.y < -1) {
-                this.spindle.position.setY(5);
-            }
-            // re-render
-            this.animate();
 
-            if (this.isAnimInfiniteRunning) {
-                this.animInfiniteCallback = setTimeout(this.animInfinite.bind(this), 200);
+        /**
+         * Subscribes to the recvline to analyze data being received
+         */
+        watchForProbeStart: function() {
+            chilipeppr.subscribe("/com-chilipeppr-widget-serialport/recvline", this, this.onRecvLineForProbe);
+        },
+        
+        /**
+         * Watch for signal that touchplate circuit is closed
+         */
+        watchForProbeEnd: function() {
+            chilipeppr.unsubscribe("/com-chilipeppr-widget-serialport/recvline", this, this.onRecvLineForProbe);
+        },
+        
+        /**
+         * Opens the recvline to the controller to receive data
+         */
+        onRecvLineForProbe: function(data) {
+            console.log("onRecvLineForProbe. data:", data);
+            
+            if (!('dataline' in data)) {
+                console.log("did not get dataline in data. returning.");
+				return;
             }
-
+            
+            // inspect data to ensure it is in the correct format
+            // ex. {"prb":{"e":1,"z":-7.844}}
+            var json = $.parseJSON(data.dataline);
+            
+            // detect and remap if needed
+            if ('r' in json && 'prb' in json.r) json = json.r;
+            
+            // confirm the data is for probe ending
+		    if ('prb' in json && 'e' in json.prb && 'z' in json.prb) {
+		        // yes, it's data for the probe ending
+		    
+		        // now do all the final steps now that we got our data
+		        this.onAfterProbeDone(json.prb);
+		    }
         },
         
         onAfterProbeDone: function(probeData) {
@@ -601,79 +473,81 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
             // play good beep
             this.audio.play();
             
-            // turn off animation/reset buttons
+            // Stop controller upon completion of probing cycle
+            console.log("The transferCode is:", transferCode);
             
-            // swap button to stop
-            $('#com-chilipeppr-widget-touchplate .btn-touchplaterun').removeClass("btn-danger").text("Run");
-            
-            // start animation showing spindle descending
-            this.animInfiniteEnd();
-            
+            // Cycle stop and swap buttons to run
             this.isRunning = false;
-            
-            // we take the z value returned and then add the plate height and make that
-            // machine coordinates offset
-            var plateHeight = $('#com-chilipeppr-widget-touchplate .heightplate').val();
+            var plateHeight = $('#' + this.id + ' .htplate').val();
             if (isNaN(plateHeight)) plateHeight = 0;
-            console.log("plateHeight:", plateHeight);
-            var zoffset = probeData.z - plateHeight;
-            var gcode = "G28.3 Z" + plateHeight + "\n";
-            var id = "tp" + this.gcodeCtr++;
-            chilipeppr.publish("/com-chilipeppr-widget-serialport/jsonSend", {Id: id, D: gcode});
-            
-            // now back off a bit
-            var gcode = "G91 G0 Z2\n";
-            var id = "tp" + this.gcodeCtr++;
-            chilipeppr.publish("/com-chilipeppr-widget-serialport/jsonSend", {Id: id, D: gcode});
+                console.log("plateHeight:", plateHeight);
 
-            // back to absolute mode
-            var gcode = "G90\n";
-            var id = "tp" + this.gcodeCtr++;
-            chilipeppr.publish("/com-chilipeppr-widget-serialport/jsonSend", {Id: id, D: gcode});
-        },
-        
-        watchForProbeStart: function() {
-            chilipeppr.unsubscribe("/com-chilipeppr-widget-serialport/recvline", this, this.onRecvLineForProbe);
-        },
-        
-        onRecvLineForProbe: function(data) {
-            console.log("onRecvLineForProbe. data:", data);
-            
-            // the data we're looking for is:
-            // {"prb":{"e":1,"z":-7.844}}
-            
-            // make sure it's the data we want
-            if (!('dataline' in data)) {
-                console.log("did not get dataline in data. returning.");
-                return;
-            }
-            
-            // let's make sure it's json
-            var json = $.parseJSON(data.dataline);
-            
-            // sometimes we get {"r":{"prb"  instead of {"prb": so just
-            // detect and remap
-            if ('r' in json && 'prb' in json.r) json = json.r;
-            
-            if ('prb' in json && 'e' in json.prb && 'z' in json.prb ) {
-                // yes, it's data for the probe ending
+            if (transferCode == "run1") {
+                // Run WCS (G53) button - Tab 1
+                $('#' + this.id + ' .btn-touchplaterun1').removeClass("btn-danger").text("Run WCS");
                 
-                // now do all the final steps now that we got our data
-                this.onAfterProbeDone(json.prb);
+                // Set G53 machine coordinates Z-value to zero
+                // create Gcode and send to controller
+                var gcode = "G28.3 Z" + plateHeight + "\n";
+                var id = "tp" + this.gcodeCtr++;
+                chilipeppr.publish("/com-chilipeppr-widget-serialport/jsonSend", {Id: id, D: gcode});
             }
-        },
-        
-        watchForProbeEnd: function() {
-            chilipeppr.unsubscribe("/com-chilipeppr-widget-serialport/recvline", this, this.onRecvLineForProbe);
-        },
-        
-        dispatch: function ( array, event ) {
-            for ( var i = 0, l = array.length; i < l; i ++ ) {
-                array[ i ]( event );
+            
+            else if (transferCode == "run2") {
+                // Run G5x (MCS) button for floating touchplate - Tab 2
+                $('#' + this.id + ' .btn-touchplaterun2').removeClass("btn-danger").text("G5x Run");
+                
+                // Set G5x offset
+                // Set the G92 offset value
+                var zoffset = probeData.z - plateHeight;
+                // create Gcode and send to controller
+                var gcode = "G10 L2 P1 Z" + zoffset + "\n";
+                var id = "tp" + this.gcodeCtr++;
+                chilipeppr.publish("/com-chilipeppr-widget-serialport/jsonSend", {Id: id, D: gcode});
             }
+            
+            else if (transferCode == "run3") {
+                // Run G92 (MCS) button for floating touchplate - Tab 2
+                $('#' + this.id + ' .btn-touchplaterun3').removeClass("btn-danger").text("G92 Run");
+                
+                // Set the G5x offset via G92
+                var gcode = "G92 Z" + plateHeight;
+                var id = "tp" + this.gcodeCtr++;
+                chilipeppr.publish("/com-chilipeppr-widget-serialport/jsonSend", {Id: id, D: gcode});
+                
+            }
+            else if (transferCode == "run4") {
+                // Run G5x (MCS) button for fixed touchplate - Tab 3
+                $('#' + this.id + ' .btn-touchplaterun4').removeClass("btn-danger").text("G5x Run4");
+                
+                // Set G5x offset
+                // Set the G92 offset value
+                var zoffset = probeData.z - plateHeight;
+                // create Gcode and send to controller
+                var gcode = "G10 L2 P1 Z" + zoffset + "\n";
+                var id = "tp" + this.gcodeCtr++;
+                chilipeppr.publish("/com-chilipeppr-widget-serialport/jsonSend", {Id: id, D: gcode})
+            }
+            else {
+                // Run G92 (MCS) button for fixed touchplate - Tab 3
+                $('#' + this.id + ' .btn-touchplaterun5').removeClass("btn-danger").text("G92 Run5");
+                
+                // Set the G5x offset via G92
+                var gcode = "G92 Z" + plateHeight;
+                var id = "tp" + this.gcodeCtr++;
+                chilipeppr.publish("/com-chilipeppr-widget-serialport/jsonSend", {Id: id, D: gcode});
+            }
+            
+            // Back tool off of touch plate (2mm)
+            var gcode = "G91 G0 Z2\n";
+    		var id = "tp" + this.gcodeCtr++;
+	    	chilipeppr.publish("/com-chilipeppr-widget-serialport/jsonSend", {Id: id, D: gcode});
+	    	
+	    	// return to absolute coordinate system
+    		var gcode = "G90\n";
+	    	var id = "tp" + this.gcodeCtr++;
+		    chilipeppr.publish("/com-chilipeppr-widget-serialport/jsonSend", {Id: id, D: gcode});
         },
-        
-        
         
         /**
          * Call this method from init to setup all the buttons when this widget
@@ -706,7 +580,33 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
                 trigger: "hover",
                 container: 'body'
             });
+        },
 
+        isHidden: false,
+        
+        unactivateWidget: function() {
+            if (!this.isHidden) {
+                // unsubscribe from everything
+                console.log("unactivateWidget. unsubscribing.");
+                this.isHidden = true;
+        
+            }
+            // issue resize event so other widgets can reflow
+            $(window).trigger('resize');
+        },
+
+        activateWidget: function() {
+            if (!this.isInitted) {
+                this.init();
+            }
+            if (this.isHidden) {
+                // resubscribe
+                console.log("activateWidget. resubscribing.");
+                this.isHidden = false;
+                this.introAnim();
+            }
+            // issue resize event so other widgets can reflow
+            $(window).trigger('resize');
         },
 
         /**
@@ -739,9 +639,13 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
             else {
                 options = {
                     showBody: true,
-                    tabShowing: 1,
+                    tabShowing: 2,
                     frprobe: 25,
-                    heightplate: 1.75
+                    htplate: 1.75,
+                    zclear: 10,
+                    g30x: 180,
+                    g30y: 10,
+                    g30z: 25.4
                 };
             }
 
@@ -755,28 +659,22 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
             else {
                 this.hideBody();
             }
-            
-            // setup textboxes
-            $('#' + this.id + ' .frprobe').val(this.options.frprobe);
-            $('#' + this.id + ' .heightplate').val(this.options.heightplate);
-            
-            // attach onchange
-            $('#' + this.id + ' input').change(this.saveOptionsLocalStorage.bind(this));
+
         },
         /**
          * When a user changes a value that is stored as an option setting, you
          * should call this method immediately so that on next load the value
          * is correctly set.
          */
-        
         saveOptionsLocalStorage: function() {
             // You can add your own values to this.options to store them
             // along with some of the normal stuff like showBody
             
-            // grab text values
+            // retrieve input vals
             this.options.frprobe = $('#' + this.id + '.frprobe').val();
-            this.options.heightplate = $('#' + this.id + '.heightplate').val();
-            
+            this.options.htplate = $('#' + this.id + '.htplate').val();
+            this.options.zclear = $('#' + this.id + '.zclear').val();
+
             var options = this.options;
 
             var optionsStr = JSON.stringify(options);
@@ -784,12 +682,6 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
             // store settings to localStorage
             localStorage.setItem(this.id + '-options', optionsStr);
         },
-        
-        onresize: function() {
-          this.width = $('#com-chilipeppr-widget-touchplate .panel-body').width();
-            this.setSize(this.width, this.height);
-        },
-        
         /**
          * Show the body of the panel.
          * @param {jquery_event} evt - If you pass the event parameter in, we 
@@ -826,53 +718,6 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
                 this.saveOptionsLocalStorage();
             }
         },
-        
-        isHidden: false,
-        unactivateWidget: function() {
-            if (!this.isHidden) {
-                // unsubscribe from everything
-                console.log("unactivateWidget. unsubscribing.");
-
-                this.isHidden = true;
-            }
-            // issue resize event so other widgets can reflow
-            $(window).trigger('resize');
-        },
-        
-        activateWidget: function() {
-            if (!this.isInitted) {
-                this.init();
-            }
-            if (this.isHidden) {
-                // resubscribe
-                console.log("activateWidget. resubscribing.");
-                //chilipeppr.subscribe("/com-chilipeppr-interface-cnccontroller/axes", this, this.onAxes);
-                //chilipeppr.subscribe("/com-chilipeppr-widget-serialport/ws/recv", this, this.onWsRecvLaser);
-                this.isHidden = false;
-                this.introAnim();
-            }
-            // issue resize event so other widgets can reflow
-            $(window).trigger('resize');
-        },
-        
-        // scripting from current touchplate widget
-        statusEl: null, // cache the status element in DOM
-        
-        status: function(txt) {
-            
-            console.log("status. txt:", txt);
-            
-            if (this.statusEl == null) this.statusEl = $('#' + this.id + '-status');
-            var len = this.statusEl.val().length;
-            if (len > 30000) {
-                console.log("truncating status area text");
-                this.statusEl.val(this.statusEl.val().substring(len-5000));
-            }
-            this.statusEl.val(this.statusEl.val() + txt + "\n");
-            this.statusEl.scrollTop(this.statusEl[0].scrollHeight - this.statusEl.height()
-            );
-        },
-        
         /**
          * This method loads the pubsubviewer widget which attaches to our 
          * upper right corner triangle menu and generates 3 menu items like
@@ -893,7 +738,7 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
                 title: this.name,
                 content: this.desc,
                 html: true,
-                delay: 200,
+                delay: 1000,
                 animation: true,
                 trigger: 'hover',
                 placement: 'auto'
@@ -907,301 +752,17 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
             });
 
         },
-        
-        //Three webGL object definitions
-        threeObj: {
-            "camera": {
-                "metadata": {
-                    "version": 4.3,
-                    "type": "Object",
-                    "generator": "ObjectExporter"
-                }, // end metadata
-                "object": {
-                    "uuid": "89F03B7D-AC02-43DF-848A-5771EB767F8C",
-                    "type": "PerspectiveCamera",
-                    "name": "Camera",
-                    "fov": 25,
-                    "aspect": 2.3550724637681157,
-                    "near": 0.1,
-                    "far": 100000,
-                    "matrix": [1,0,0,0,0,1,-0.371,0,0,0.371,1,0,-3.414,37,61,1]
-                } //end object line12
-            }, //end camera
-            "scene": {
-                "metadata": {
-                    "version": 4.3,
-					"type": "Object",
-					"generator": "ObjectExporter"
-                }, //end metadata line 24
-                "geometries": [
-                    {
-                        "uuid": "4601A1C8-537C-4551-BD1D-4C5AF434C3CB",
-						"type": "PlaneGeometry",
-						"width": 5000,
-						"height": 5000,
-						"widthSegments": 1,
-						"heightSegments": 1
-                    },
-                    {
-                        "uuid": "50DB6DF6-4923-441C-AE63-92D3A94EAEEC",
-					    "type": "CylinderGeometry",
-    					"radiusTop": 2,
-	    				"radiusBottom": 2,
-		    			"height": 10,
-			    		"radialSegments": 32,
-				    	"heightSegments": 1,
-					    "openEnded": false
-                    },
-                    {
-                        "uuid": "E52C9CE5-1054-4953-87BD-2CD5640D756E",
-						"type": "CylinderGeometry",
-						"radiusTop": 6,
-						"radiusBottom": 4,
-						"height": 2,
-						"radialSegments": 32,
-						"heightSegments": 1,
-						"openEnded": false
-                    },
-                    {
-                        "uuid": "5DA49C1D-243E-44BC-B9ED-3D451DC46576",
-						"type": "CylinderGeometry",
-						"radiusTop": 6,
-						"radiusBottom": 6,
-						"height": 5,
-						"radialSegments": 32,
-						"heightSegments": 1,
-						"openEnded": false
-                    },
-                    {
-                        "uuid": "7FC7C6E9-AB7B-4B04-8BE1-13C810B7A639",
-						"type": "CylinderGeometry",
-						"radiusTop": 10,
-						"radiusBottom": 9.08,
-						"height": 1,
-						"radialSegments": 64,
-						"heightSegments": 1,
-						"openEnded": false
-                    },
-                    {
-                        "uuid": "93672A9F-6465-4F99-91AF-3CE40984F939",
-						"type": "CylinderGeometry",
-						"radiusTop": 10,
-						"radiusBottom": 10,
-						"height": 100,
-						"radialSegments": 64,
-						"heightSegments": 1,
-						"openEnded": false
-                    },
-                    {
-                        "uuid": "AC65F2CF-EBFF-4EC9-A4EF-F9FCB356E78F",
-						"type": "CylinderGeometry",
-						"radiusTop": 18,
-						"radiusBottom": 18,
-						"height": 20,
-						"radialSegments": 64,
-						"heightSegments": 1,
-						"openEnded": false
-                    },
-                    {
-                        "uuid": "8EB2C68D-5127-417B-94B1-E5B428D39B58",
-						"type": "CylinderGeometry",
-						"radiusTop": 15,
-						"radiusBottom": 15,
-						"height": 10,
-						"radialSegments": 64,
-						"heightSegments": 1,
-						"openEnded": false
-                }], // end geometries line 29
-                "materials": [
-                    {
-                        "uuid": "D963E6DA-A503-450E-B082-F17EE56A0E75",
-						"type": "MeshPhongMaterial",
-						"color": 16777215,
-						"ambient": 16777215,
-						"emissive": 6184542,
-						"specular": 1118481,
-						"shininess": 30,
-						"opacity": 0.5
-                    },
-                    {
-                        "uuid": "BE00593A-F38B-48E1-9219-66CC5B0C81DF",
-						"type": "MeshPhongMaterial",
-						"color": 16777215,
-						"ambient": 16777215,
-						"emissive": 0,
-						"specular": 1118481,
-						"shininess": 30
-                    },
-                    {
-                        "uuid": "DE09C011-C3E2-4D2D-986C-D7EA95C3F99F",
-						"type": "MeshPhongMaterial",
-						"color": 16777215,
-						"ambient": 16777215,
-						"emissive": 0,
-						"specular": 1118481,
-						"shininess": 30
-                    },
-                    {
-                        "uuid": "0193A44A-30D0-4B28-BB6A-75652B7716E5",
-						"type": "MeshPhongMaterial",
-						"color": 16777215,
-						"ambient": 16777215,
-						"emissive": 0,
-						"specular": 1118481,
-						"shininess": 30
-                    },
-                    {
-                        "uuid": "D20E89D8-E7FF-4152-B666-46CBDB913FAC",
-						"type": "MeshPhongMaterial",
-						"color": 8292740,
-						"ambient": 16777215,
-						"emissive": 131340,
-						"specular": 1118481,
-						"shininess": 30,
-						"opacity": 0.8
-                    },
-                    {
-                        "uuid": "3E27D340-2002-48B3-A3CB-62DB72D1E1A6",
-						"type": "MeshPhongMaterial",
-						"color": 11974326,
-						"ambient": 16777215,
-						"emissive": 5395026,
-						"specular": 1118481,
-						"shininess": 30
-                }], // end materials line 108
-                "object": {
-                    "uuid": "31517222-A9A7-4EAF-B5F6-60751C0BABA3",
-					"type": "Scene",
-					"name": "Scene",
-					"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
-					"children": [
-					    {
-					        "uuid": "CB134A1B-D27A-4509-A4C7-971458B9D412",
-							"type": "SpotLight",
-							"name": "SpotLight 1",
-							"color": 16777215,
-							"intensity": 1,
-							"distance": 0,
-							"angle": 0.874,
-							"exponent": 10,
-							"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,100,200,150,1]
-					    },
-					    {
-					        "uuid": "65E528E3-190E-4679-A254-1692F2237593",
-							"type": "Mesh",
-							"name": "Plane 3",
-							"geometry": "4601A1C8-537C-4551-BD1D-4C5AF434C3CB",
-							"material": "D963E6DA-A503-450E-B082-F17EE56A0E75",
-							"matrix": 
-							[1,0,0,0,0,0.0003,-1,0,0,1,0.0003,0,0,0,0,1]
-					    },
-					    {
-					        "uuid": "0D3032BA-5923-4B8F-BA26-4E45525DB3D1",
-							"type": "Group",
-							"name": "GroupSpindle",
-							"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
-							"children": [
-							    {
-							        "uuid": 
-							        "768EAB11-0588-4690-A053-E6F9C5BB87E0",
-									"type": "Mesh",
-									"name": "Endmill",
-									"geometry": 
-									"50DB6DF6-4923-441C-AE63-92D3A94EAEEC",
-									"material": 
-									"BE00593A-F38B-48E1-9219-66CC5B0C81DF",
-									"matrix": 
-									[1,0,0,0,0,1,0,0,0,0,1,0,0,18.51,0,1]
-							    },
-							    {
-							        "uuid": 
-							        "6CD932C4-5C71-404B-B0FB-5B7879388F2E",
-									"type": "Mesh",
-									"name": "ColletTaper",
-									"geometry": 
-									"E52C9CE5-1054-4953-87BD-2CD5640D756E",
-									"material": 
-									"DE09C011-C3E2-4D2D-986C-D7EA95C3F99F",
-									"matrix": 
-									[1,0,0,0,0,1,0,0,0,0,1,0,0,22.63,0,1]
-							    },
-							    {
-							        "uuid": 
-							        "C4D75B11-5EC3-4267-AAA5-B62DC2DD6507",
-									"type": "Mesh",
-									"name": "Collet",
-									"geometry": 
-									"5DA49C1D-243E-44BC-B9ED-3D451DC46576",
-									"material": 
-									"0193A44A-30D0-4B28-BB6A-75652B7716E5",
-									"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,26,0,1]
-							    },
-							    {
-							        "uuid": 
-							        "84DECC53-67F7-4707-B9EC-F26F5FBDBC28",
-									"type": "Mesh",
-									"name": "SpindleBaseTaper",
-									"geometry": 
-									"7FC7C6E9-AB7B-4B04-8BE1-13C810B7A639",
-									"material": 
-									"D20E89D8-E7FF-4152-B666-46CBDB913FAC",
-									"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,29,0,1]
-							    },
-							    {
-							        "uuid": 
-							        "329C2A35-C121-489E-86D8-86B8426A4726",
-									"type": "Mesh",
-									"name": "SpindleBase",
-									"geometry": 
-									"93672A9F-6465-4F99-91AF-3CE40984F939",
-									"material": 
-									"D20E89D8-E7FF-4152-B666-46CBDB913FAC",
-									"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,79.5,0,1]
-							}], //end children line 195
-					    },
-					    {
-					        "uuid": "B0F9BB34-C502-46B6-A34E-BB374743DFCB",
-							"type": "Group",
-							"name": "GroupTouchPlate",
-							"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
-							"children": [
-							    {
-							        "uuid": 
-							        "F489E92A-EE90-48AC-88AF-4867D7049272",
-									"type": "Mesh",
-									"name": "TouchPlateOuter",
-									"geometry": 
-									"AC65F2CF-EBFF-4EC9-A4EF-F9FCB356E78F",
-									"material": 
-									"D20E89D8-E7FF-4152-B666-46CBDB913FAC",
-									"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1]
-							    },
-							    {
-							        "uuid": 
-							        "B38B19B8-5E6A-4EAB-89B5-998A8B10BD7A",
-									"type": "Mesh",
-									"name": "TouchPlateMetal",
-									"geometry": 
-									"8EB2C68D-5127-417B-94B1-E5B428D39B58",
-									"material": 
-									"3E27D340-2002-48B3-A3CB-62DB72D1E1A6",
-									"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,6.12,0,1]
-							}] //end children line 242
-					}] // end children line 170
-                } //end object line 165
-            }, // end scene line 23
-            "scripts": {}
-        } //end threeObj
 
-    }; //end of return, line 78
-}); //end of cpdefine, line 77
+    }
+});
+
     //]]>
     </script>
 
 </head>
 
 <body>
-    <div id="com-chilipeppr-widget-touchplate" class="panel panel-default">
+    <div id="com-chilipeppr-dlvp-widget-touchplate" class="panel panel-default" style="width: 500px">
         <div class="panel-heading ">
 
             <div class="btn-toolbar pull-right" role="toolbar">
@@ -1216,62 +777,175 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
                         <ul class="dropdown-menu dropdown-menu-right" role="menu"></ul>
                     </div>
                 </div>
-            </div> <span class="panel-title" data-toggle="popover">dvlp Widget - Touch Plate</span> <span style="font-size:9px;" class="fb-build">v1</span>
+            </div> <span class="panel-title" data-toggle="popover">Template Widget</span> <span style="font-size:9px;" class="fb-build">v1</span>
 
         </div>
         <div class="panel-body">
-            
             <!-- Nav tabs -->
-            
             <ul class="nav nav-tabs" role="tablist">
-                <li class="active"><a href="#com-chilipeppr-widget-touchplate-tab1" role="tab" data-toggle="tab">MCS (G53)</a></li>
-                <li><a href="#com-chilipeppr-widget-touchplate-tab2" role="tab" data-toggle="tab">WCS (G5x) Floating</a></li>
-                <li><a href="#com-chilipeppr-widget-touchplate-tab3" role="tab" data-toggle="tab">WCS (G5x) Fixed</a></li>
-                <li><a href="#com-chilipeppr-widget-touchplate-tab4" role="tab" data-toggle="tab">Notes</a></li>
-            </ul> 
-
+                <li><a href="#com-chilipeppr-dlvp-widget-touchplate-tab1" role="tab" data-toggle="tab">MCS G53</a>
+                </li>
+                <li class="active"><a href="#com-chilipeppr-dlvp-widget-touchplate-tab2" role="tab" data-toggle="tab">G5x Float</a></li>
+                <li><a href="#com-chilipeppr-dlvp-widget-touchplate-tab3" role="tab" data-toggle="tab">G5x Fixed</a></li>
+                <li><a href="#com-chilipeppr-dlvp-widget-touchplate-tab4" role="tab" data-toggle="tab">G30</a></li>
+                <li><a href="#com-chilipeppr-dlvp-widget-touchplate-tab5" role="tab" data-toggle="tab">Notes</a></li>
+            </ul>
             <!-- Tab panes -->
+
+            <!-- Tab 1 -->
             <div class="tab-content">
-                <!-- Tab 1 -->                
-                <div class="tab-pane active settings-overlay" id="com-chilipeppr-widget-touchplate-tab1">
-                    <div class="">
-                        <p>This the main working tab</p>
-                        <p>
-                    <button type="button" class="btn xbtn-xs btn-primary btn-touchplaterun" style="width:100%;">Run</button>
-                </p>
-                
-                <div class="" style="text-align:right;">Feedrate to Probe</div>
-                <div class="input-group">
-                    <input class="form-control frprobe" type="number" placeholder="0.00" value="25" />
-                    <div class="input-group-addon">mm/min</div>
-                </div>
-                
-                <div style="" xclass="pull-right">
-                    <div class="" style="text-align:right;">Height of Plate</div>
-                    <div class="input-group">
-                        <input class="form-control heightplate" type="number" min="0" placeholder="0.00" value="1.75" />
-                        <div class="input-group-addon">mm</div>
-                    </div>
-                </div>
-                    </div>
+                <div class="tab-pane" id="com-chilipeppr-dlvp-widget-touchplate-tab1">
+                    <table class="table table-condensed table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class = "td-1L">
+                                    <dd>- Runs from the current X-Y position</dd>
+                                    <dd>- Position touch probe</dd>
+                                    <dd>- Enter values for feedrate and height</dd>
+                                    <dd>- Click "Run" button</dd>
+                                    <br>
+                                    <dd style="font-size: 12px; padding-left: 10px; padding-right: 10px"><i>Exercise caution after a subsequence tool changes without re-running this Widget (ex. "Go To Machine Home", "Go To G5x Zero"), there is a chance of crashing the tool.</i></dd>
+                                </td>
+                                <td class = "td-1R">
+                                    <p><button type="button" id="run1" class="btn xbtn-xs btn-primary btn-touchplaterun1" style="width:100%;">Run</button></p>
+                                    <p></p>
+                                    <div class="" style="text-align:right;">Feedrate to Probe</div>
+                                    <div class="input-group">
+                                        <input class="form-control frprobe" type="number" min="0" placeholder="0.00" value="25" />
+                                        <div class="input-group-addon">mm/min</div>
+                                    </div>
+                                    <p></p>
+                                    <div style="" xclass="input-group">
+                                        <div class="" style="text-align:right;">Height of Plate</div>
+                                        <div class="input-group">
+                                            <input class="form-control htplate" type="number" min="0" placeholder="0.00" value="1.75" />
+                                            <div class="input-group-addon">mm</div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
 
                 <!-- Tab 2 -->
-                <div class="tab-pane settings-overlay" id="com-chilipeppr-widget-touchplate-tab2">
-                    <p>This is the content of tab 2.</p>
+                <div class="tab-pane active" id="com-chilipeppr-dlvp-widget-touchplate-tab2">
+                    <table class="table table-condensed table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class = "td-1L">
+                                    <dd>- Runs from the current X-Y position</dd>
+                                    <dd>- Sets Z-zero for the current WCS</dd>
+                                    <dd>- Position touch probe</dd>
+                                    <dd>- Enter values for feedrate and height</dd>
+                                    <br>
+                                    <dd>- Click "G5x Run" button to set G5x Z-zero</dd>
+                                    <dd>- Click "G92 Run" button to set temporary offset</dd>
+                                </td>
+                                <td style="padding: 10px">
+                                    <p>
+                                        <button type="button" id="run2" class="btn xbtn-xs btn-primary btn-touchplaterun2" style="width:48%;">G5x Run</button>
+                                        <button type="button" id="run3" class="btn xbtn-xs btn-info btn-touchplaterun3" style="width:48%;">G92 Run</button>
+                                    </p>
+                                    <p></p>
+                                    <div class="" style="text-align:right;">Feedrate to Probe</div>
+                                    <div class="input-group">
+                                        <input class="form-control frprobe" type="number" min="0" placeholder="0.00" value="25" />
+                                        <div class="input-group-addon">mm/min</div>
+                                    </div>
+                                    <p></p>
+                                    <div style="" xclass="input-group">
+                                        <div class="" style="text-align:right;">Height of Plate</div>
+                                        <div class="input-group">
+                                            <input class="form-control htplate" type="number" min="0" placeholder="0.00" value="1.75" />
+                                            <div class="input-group-addon">mm</div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
 
                 <!-- Tab 3 -->
-                <div class="tab-pane settings-overlay" id="com-chilipeppr-widget-touchplate-tab3">
-                    <p>This is the content of tab 3.</p>
+                <div class="tab-pane" id="com-chilipeppr-dlvp-widget-touchplate-tab3">
+                    <table class="table table-condensed table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class = "td-1L">
+                                    <dd>- Runs from the pre-defined G30 XYZ position</dd>
+                                    <dd>- Sets Z-zero for the current WCS</dd>
+                                    <dd>- Enter values for feedrate and height</dd>
+                                    <dd>- Enter Z-clearance value to raise head</dd>
+                                    <dd>- If the G30 position has not been defined, go to the G30 tab</dd>
+                                    <br>
+                                    <dd>- Click "G5x Run" button to set G5x Z-zero</dd>
+                                    <dd>- Click "G92 Run" button to set temporary offset</dd>
+                                </td>
+                                <td style="padding: 10px">
+                                    <p>
+                                        <button type="button" id="run4" class="btn xbtn-xs btn-primary btn-touchplaterun4" style="width:48%;">G5x Run</button>
+                                        <button type="button" id="run5" class="btn xbtn-xs btn-info btn-touchplaterun5" style="width:48%;">G92 Run</button>
+                                    </p>
+                                    <p></p>
+                                    <div class="" style="text-align:right;">Feedrate to Probe</div>
+                                    <div class="input-group">
+                                        <input class="form-control frprobe" type="number" min="0" placeholder="0.00" value="25" />
+                                        <div class="input-group-addon">mm/min</div>
+                                    </div>
+                                    <p></p>
+                                    <div style="" xclass="input-group">
+                                        <div class="" style="text-align:right;">Height of Plate</div>
+                                        <div class="input-group">
+                                            <input class="form-control htplate" type="number" min="0" placeholder="0.00" value="1.75" />
+                                            <div class="input-group-addon">mm</div>
+                                        </div>
+                                    </div>
+                                    <div style="" xclass="input-group">
+                                        <div class="" style="text-align:right;">Z Clearance</div>
+                                        <div class="input-group">
+                                            <input class="form-control zclear" type="number" min="0" placeholder="0.00" value="10" />
+                                            <div class="input-group-addon">mm</div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 
-                 <!-- Tab 4 -->
-                <div class="tab-pane settings-notes" id="com-chilipeppr-widget-touchplate-tab4" 
-                style="resize: none;" data-role="none">
-                    <p><a href="#mcs">Jump to MCS (G53) </a> | <a href="#wcsfl"> 
-                    Jump to WCS Floating</a> | <a href="#wcsfx">Jump to WCS Fixed
-                    </a></p>
+                <!-- Tab 4 -->
+                <div class="tab-pane" id="com-chilipeppr-dlvp-widget-touchplate-tab4">
+                    <table class="table table-condensed table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class ="td-1L" style = "text-align: left">
+                                    <dd>Defines the G30 position based on the mill's current position</dd>
+                                    <br>
+                                    <dd>- Move machine to the X & Y location above fixed touch plate.</dd>
+                                    <dd>- Adjust Z-height to ensure tool selection will clear the touchplate.</dd>
+                                    <dd>- Click button to set the G30 location</dd>
+                                </td>
+                                <td style="padding: 10px; text-align:center">
+                                    <p><button type="button" id="run6" class="btn xbtn-xs btn-primary btn-touchplaterun6" style="width:80%;">G30 Current Position</button></p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Tab 5 -->
+                <div class="tab-pane settings-notes" id="com-chilipeppr-dlvp-widget-touchplate-tab5" data-role="none">
+                    <p><a href="#mcs">Jump to MCS (G53) </a> | <a href="#wcsfl"> Jump to WCS Floating</a> | <a href="#wcsfx">Jump to WCS Fixed</a>
+                    </p>
+                    <dl>
+                        <dt><b>General Notes</b></dt>
+                        <li>Probe cycle runs in the base Machine units of mm.
+                        </li>
+                        <li>Probing works in the Machine Coordinate system (G53)
+                        </li>
+                    </dl>
+                    
                     <dl>
                         <dt><b>Electrical Connections</b></dt>
                         <li>Connect tool to an input ground on the TinyG board
@@ -1382,11 +1056,12 @@ cpdefine("inline:com-chilipeppr-widget-touchplate", ["chilipeppr_ready", 'Three'
                             L2 Px Zn)</dd>
                     </ul>
                     </dl>
-                </div> <!-- end of tab 4 -->
 
-            </div> <!-- end of tab content -->
+                </div>
 
-        </div> <!-- end of panel-body -->
+            </div>
+
+        </div>
     </div>
 </body>
 

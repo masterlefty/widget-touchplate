@@ -3,7 +3,6 @@
 
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <!-- fresh touchplate build from git@masterlefty/baseline-widget-template-->
 
     <title><!--(auto-fill by runme.js--></title>
 
@@ -33,7 +32,7 @@
 </head>
 
 <body>
-    <div id="com-chilipeppr-widget-touchplate" class="panel panel-default">
+    <div id="com-chilipeppr-dlvp-widget-touchplate" class="panel panel-default" style="width: 500px">
         <div class="panel-heading ">
 
             <div class="btn-toolbar pull-right" role="toolbar">
@@ -48,62 +47,175 @@
                         <ul class="dropdown-menu dropdown-menu-right" role="menu"></ul>
                     </div>
                 </div>
-            </div> <span class="panel-title" data-toggle="popover">dvlp Widget - Touch Plate</span> <span style="font-size:9px;" class="fb-build">v1</span>
+            </div> <span class="panel-title" data-toggle="popover">Template Widget</span> <span style="font-size:9px;" class="fb-build">v1</span>
 
         </div>
         <div class="panel-body">
-            
             <!-- Nav tabs -->
-            
             <ul class="nav nav-tabs" role="tablist">
-                <li class="active"><a href="#com-chilipeppr-widget-touchplate-tab1" role="tab" data-toggle="tab">MCS (G53)</a></li>
-                <li><a href="#com-chilipeppr-widget-touchplate-tab2" role="tab" data-toggle="tab">WCS (G5x) Floating</a></li>
-                <li><a href="#com-chilipeppr-widget-touchplate-tab3" role="tab" data-toggle="tab">WCS (G5x) Fixed</a></li>
-                <li><a href="#com-chilipeppr-widget-touchplate-tab4" role="tab" data-toggle="tab">Notes</a></li>
-            </ul> 
-
+                <li><a href="#com-chilipeppr-dlvp-widget-touchplate-tab1" role="tab" data-toggle="tab">MCS G53</a>
+                </li>
+                <li class="active"><a href="#com-chilipeppr-dlvp-widget-touchplate-tab2" role="tab" data-toggle="tab">G5x Float</a></li>
+                <li><a href="#com-chilipeppr-dlvp-widget-touchplate-tab3" role="tab" data-toggle="tab">G5x Fixed</a></li>
+                <li><a href="#com-chilipeppr-dlvp-widget-touchplate-tab4" role="tab" data-toggle="tab">G30</a></li>
+                <li><a href="#com-chilipeppr-dlvp-widget-touchplate-tab5" role="tab" data-toggle="tab">Notes</a></li>
+            </ul>
             <!-- Tab panes -->
+
+            <!-- Tab 1 -->
             <div class="tab-content">
-                <!-- Tab 1 -->                
-                <div class="tab-pane active settings-overlay" id="com-chilipeppr-widget-touchplate-tab1">
-                    <div class="">
-                        <p>This the main working tab</p>
-                        <p>
-                    <button type="button" class="btn xbtn-xs btn-primary btn-touchplaterun" style="width:100%;">Run</button>
-                </p>
-                
-                <div class="" style="text-align:right;">Feedrate to Probe</div>
-                <div class="input-group">
-                    <input class="form-control frprobe" type="number" placeholder="0.00" value="25" />
-                    <div class="input-group-addon">mm/min</div>
-                </div>
-                
-                <div style="" xclass="pull-right">
-                    <div class="" style="text-align:right;">Height of Plate</div>
-                    <div class="input-group">
-                        <input class="form-control heightplate" type="number" min="0" placeholder="0.00" value="1.75" />
-                        <div class="input-group-addon">mm</div>
-                    </div>
-                </div>
-                    </div>
+                <div class="tab-pane" id="com-chilipeppr-dlvp-widget-touchplate-tab1">
+                    <table class="table table-condensed table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class = "td-1L">
+                                    <dd>- Runs from the current X-Y position</dd>
+                                    <dd>- Position touch probe</dd>
+                                    <dd>- Enter values for feedrate and height</dd>
+                                    <dd>- Click "Run" button</dd>
+                                    <br>
+                                    <dd style="font-size: 12px; padding-left: 10px; padding-right: 10px"><i>Exercise caution after a subsequence tool changes without re-running this Widget (ex. "Go To Machine Home", "Go To G5x Zero"), there is a chance of crashing the tool.</i></dd>
+                                </td>
+                                <td class = "td-1R">
+                                    <p><button type="button" id="run1" class="btn xbtn-xs btn-primary btn-touchplaterun1" style="width:100%;">Run</button></p>
+                                    <p></p>
+                                    <div class="" style="text-align:right;">Feedrate to Probe</div>
+                                    <div class="input-group">
+                                        <input class="form-control frprobe" type="number" min="0" placeholder="0.00" value="25" />
+                                        <div class="input-group-addon">mm/min</div>
+                                    </div>
+                                    <p></p>
+                                    <div style="" xclass="input-group">
+                                        <div class="" style="text-align:right;">Height of Plate</div>
+                                        <div class="input-group">
+                                            <input class="form-control htplate" type="number" min="0" placeholder="0.00" value="1.75" />
+                                            <div class="input-group-addon">mm</div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
 
                 <!-- Tab 2 -->
-                <div class="tab-pane settings-overlay" id="com-chilipeppr-widget-touchplate-tab2">
-                    <p>This is the content of tab 2.</p>
+                <div class="tab-pane active" id="com-chilipeppr-dlvp-widget-touchplate-tab2">
+                    <table class="table table-condensed table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class = "td-1L">
+                                    <dd>- Runs from the current X-Y position</dd>
+                                    <dd>- Sets Z-zero for the current WCS</dd>
+                                    <dd>- Position touch probe</dd>
+                                    <dd>- Enter values for feedrate and height</dd>
+                                    <br>
+                                    <dd>- Click "G5x Run" button to set G5x Z-zero</dd>
+                                    <dd>- Click "G92 Run" button to set temporary offset</dd>
+                                </td>
+                                <td style="padding: 10px">
+                                    <p>
+                                        <button type="button" id="run2" class="btn xbtn-xs btn-primary btn-touchplaterun2" style="width:48%;">G5x Run</button>
+                                        <button type="button" id="run3" class="btn xbtn-xs btn-info btn-touchplaterun3" style="width:48%;">G92 Run</button>
+                                    </p>
+                                    <p></p>
+                                    <div class="" style="text-align:right;">Feedrate to Probe</div>
+                                    <div class="input-group">
+                                        <input class="form-control frprobe" type="number" min="0" placeholder="0.00" value="25" />
+                                        <div class="input-group-addon">mm/min</div>
+                                    </div>
+                                    <p></p>
+                                    <div style="" xclass="input-group">
+                                        <div class="" style="text-align:right;">Height of Plate</div>
+                                        <div class="input-group">
+                                            <input class="form-control htplate" type="number" min="0" placeholder="0.00" value="1.75" />
+                                            <div class="input-group-addon">mm</div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
 
                 <!-- Tab 3 -->
-                <div class="tab-pane settings-overlay" id="com-chilipeppr-widget-touchplate-tab3">
-                    <p>This is the content of tab 3.</p>
+                <div class="tab-pane" id="com-chilipeppr-dlvp-widget-touchplate-tab3">
+                    <table class="table table-condensed table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class = "td-1L">
+                                    <dd>- Runs from the pre-defined G30 XYZ position</dd>
+                                    <dd>- Sets Z-zero for the current WCS</dd>
+                                    <dd>- Enter values for feedrate and height</dd>
+                                    <dd>- Enter Z-clearance value to raise head</dd>
+                                    <dd>- If the G30 position has not been defined, go to the G30 tab</dd>
+                                    <br>
+                                    <dd>- Click "G5x Run" button to set G5x Z-zero</dd>
+                                    <dd>- Click "G92 Run" button to set temporary offset</dd>
+                                </td>
+                                <td style="padding: 10px">
+                                    <p>
+                                        <button type="button" id="run4" class="btn xbtn-xs btn-primary btn-touchplaterun4" style="width:48%;">G5x Run</button>
+                                        <button type="button" id="run5" class="btn xbtn-xs btn-info btn-touchplaterun5" style="width:48%;">G92 Run</button>
+                                    </p>
+                                    <p></p>
+                                    <div class="" style="text-align:right;">Feedrate to Probe</div>
+                                    <div class="input-group">
+                                        <input class="form-control frprobe" type="number" min="0" placeholder="0.00" value="25" />
+                                        <div class="input-group-addon">mm/min</div>
+                                    </div>
+                                    <p></p>
+                                    <div style="" xclass="input-group">
+                                        <div class="" style="text-align:right;">Height of Plate</div>
+                                        <div class="input-group">
+                                            <input class="form-control htplate" type="number" min="0" placeholder="0.00" value="1.75" />
+                                            <div class="input-group-addon">mm</div>
+                                        </div>
+                                    </div>
+                                    <div style="" xclass="input-group">
+                                        <div class="" style="text-align:right;">Z Clearance</div>
+                                        <div class="input-group">
+                                            <input class="form-control zclear" type="number" min="0" placeholder="0.00" value="10" />
+                                            <div class="input-group-addon">mm</div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 
-                 <!-- Tab 4 -->
-                <div class="tab-pane settings-notes" id="com-chilipeppr-widget-touchplate-tab4" 
-                style="resize: none;" data-role="none">
-                    <p><a href="#mcs">Jump to MCS (G53) </a> | <a href="#wcsfl"> 
-                    Jump to WCS Floating</a> | <a href="#wcsfx">Jump to WCS Fixed
-                    </a></p>
+                <!-- Tab 4 -->
+                <div class="tab-pane" id="com-chilipeppr-dlvp-widget-touchplate-tab4">
+                    <table class="table table-condensed table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class ="td-1L" style = "text-align: left">
+                                    <dd>Defines the G30 position based on the mill's current position</dd>
+                                    <br>
+                                    <dd>- Move machine to the X & Y location above fixed touch plate.</dd>
+                                    <dd>- Adjust Z-height to ensure tool selection will clear the touchplate.</dd>
+                                    <dd>- Click button to set the G30 location</dd>
+                                </td>
+                                <td style="padding: 10px; text-align:center">
+                                    <p><button type="button" id="run6" class="btn xbtn-xs btn-primary btn-touchplaterun6" style="width:80%;">G30 Current Position</button></p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Tab 5 -->
+                <div class="tab-pane settings-notes" id="com-chilipeppr-dlvp-widget-touchplate-tab5" data-role="none">
+                    <p><a href="#mcs">Jump to MCS (G53) </a> | <a href="#wcsfl"> Jump to WCS Floating</a> | <a href="#wcsfx">Jump to WCS Fixed</a>
+                    </p>
+                    <dl>
+                        <dt><b>General Notes</b></dt>
+                        <li>Probe cycle runs in the base Machine units of mm.
+                        </li>
+                        <li>Probing works in the Machine Coordinate system (G53)
+                        </li>
+                    </dl>
+                    
                     <dl>
                         <dt><b>Electrical Connections</b></dt>
                         <li>Connect tool to an input ground on the TinyG board
@@ -214,11 +326,12 @@
                             L2 Px Zn)</dd>
                     </ul>
                     </dl>
-                </div> <!-- end of tab 4 -->
 
-            </div> <!-- end of tab content -->
+                </div>
 
-        </div> <!-- end of panel-body -->
+            </div>
+
+        </div>
     </div>
 </body>
 
