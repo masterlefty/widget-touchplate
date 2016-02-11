@@ -411,7 +411,7 @@ cpdefine("inline:com-chilipeppr-dlvp-widget-touchplate", ["chilipeppr_ready", /*
                 chilipeppr.publish("/com-chilipeppr-widget-serialport/jsonSend", {Id: id, D: gcode});
                 
                 // Swap selected button to run
-                    $('#' + this.id + ' .btn-touchplaterun6').removeClass("btn-danger").text("G30 Fixed Location");
+                    $('#' + this.id + ' .btn-touchplaterun6').removeClass("btn-danger").text("G30 Current Position");
                     this.isRunning = false;
             } else {
                 
