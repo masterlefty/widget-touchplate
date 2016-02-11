@@ -275,13 +275,14 @@ cpdefine("inline:com-chilipeppr-dlvp-widget-touchplate", ["chilipeppr_ready", /*
             console.log("I am done being initted.");
         },
         
-         onCoordsUpdate: function (coords) {
-             console.log("onCoordsUpdate. coords:", coords);
-             if (coords.coordNum != this.lastCoords.coordNum) {
-                 $('.com-chilipeppr-widget-xyz-coords').text(coords.coord);
-                 this.lastCoords = coords;
-             }
-         },
+        onCoordsUpdate: function(coords) {
+            console.log("onCoordsUpdate. coords:", coords);
+            if (coords.coordNum != this.lastCoords.coordNum) {
+                $('.com-chilipeppr-widget-xyz-coords').text(coords.coord);
+                this.lastCoords = coords;
+            }
+        },
+
         
         /**
          * Call this method on button click to begin running the touch plate
@@ -295,7 +296,6 @@ cpdefine("inline:com-chilipeppr-dlvp-widget-touchplate", ["chilipeppr_ready", /*
         onRun: function(evt) {
             // when user clicks the run button
             console.log("user clicked run button. evt:", evt, event.target.id);
-            console.log("coordinate is:", lastCoords);
 
             // define variable to determine which subroutine to run based on
             // user selection through the tabs
