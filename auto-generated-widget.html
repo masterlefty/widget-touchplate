@@ -959,71 +959,127 @@ cpdefine("inline:com-chilipeppr-dlvp-widget-touchplate", ["chilipeppr_ready", /*
                   
                     <dl>
                         <dt><b>Probe Operations</b></dt>
-                        <li>Enter the feedrate, height of probe, and z-clearance (fixed tab) values.</li>
-                        <li>After the routine is finished, the Z-zero value is set to the surface on which the touchplate rests based on the plate height input value.</li>
+                        <li>Enter the feedrate, height of probe, and 
+                            z-clearance (fixed tab) values.</li>
+                        <li>After the routine is finished, the Z-zero value is 
+                            set to the surface on which the touchplate rests 
+                            based on the plate height input value.</li>
                         <li>Run this widget after each tool change.</li>
-                        <dt><li>Exercise caution after a subsequence tool change without re-running this Widget.</li></dt>
-                        <dd>If you use the go to home/zero commands (Machine or WCS), there is a chance of crashing the tool into the workbed or workpiece.</dd>
+                        <dt><li>Exercise caution after a subsequence tool 
+                            change without re-running this Widget.</li></dt>
+                        <dd>If you use the go to home/zero commands (Machine 
+                            or WCS), there is a chance of crashing the tool 
+                            into the workbed or workpiece.</dd>
                     </dl>
                     
                     <dl>
                         <dt><b>Tips</b></dt>
-                        <li>Placing the touchplate on the machine bed will define the part’s Z-zero to the bottom of the material stock.</li>
-                        <li>This option will save wear and tear on the machine’s waste board.</li>
-                        <li>To define the stock top as Z-zero, add the nominal thickness of the material to the input value for the height of probe.</li>
+                        <li>Placing the touchplate on the machine bed will 
+                            define the part’s Z-zero to the bottom of the 
+                            material stock.</li>
+                        <li>This option will save wear and tear on the 
+                            machine’s waste board.</li>
+                        <li>To define the stock top as Z-zero, add the 
+                            nominal thickness of the material to the input 
+                            value for the height of probe.</li>
                     </dl>
                   
                     <dl><hr>
                         <dt id="mcs"><b>MCS</b> (G53) -</dt>
-                        <dd>- Probing sequence runs from the machine’s current X-Y position.</dd>
-                        <dd>- Locate the moveable touchplate on the desired work surface, and position the tool so it is located above (~1” or 25mm) the touchplate.</dd>
-                        <dd>- Once the job(s) is/are complete, consider rehoming the Machine’s absolute Z-axis coordinate. <i>(G28.2 z0, if limit switches are installed; or adjust manually and use the G28.3 z0, if no limit switches).</i></dd>
+                        <dd>- Probing sequence runs from the machine’s 
+                            current X-Y position.</dd>
+                        <dd>- Locate the moveable touchplate on the desired 
+                             work surface, and position the tool so it is 
+                             located above (~1” or 25mm) the touchplate.</dd>
+                        <dd>- Once the job(s) is/are complete, consider 
+                             rehoming the Machine’s absolute Z-axis coordinate.
+                             <i>(G28.2 z0, if limit switches are installed; 
+                             or adjust manually and use the G28.3 z0, if no 
+                             limit switches).</i></dd>
                         
                     <ul><dt>Notes:</dt>
-                        <dd>- This routine has been installed to support legacy versions of Chilipeppr.</dd>
-                        <dd>- This routine does <u>not</u> set G5x Z-axis to zero(0), unless the WCS is mapped to the machines's absolute coordinate system (MCS>.</dd>
-                        <dd>- Any offset coordinate systems (G54, G55, etc) are readjusted based on the new Machine Z-0 value. (The offset values in G10 L2 Pn Zn are not changed).</dd>
-                        <dd>-	This routine is useful if you do not utilize work coordinates (WCS), or if current WCS (ex. G54) is mapped to the Machine’s absolute (MCS) coordinates.</dd>
+                        <dd>- This routine has been installed to support 
+                            legacy versions of Chilipeppr.</dd>
+                        <dd>- This routine does <u>not</u> set G5x Z-axis to 
+                            zero(0), unless the WCS is mapped to the machines'
+                            absolute coordinate system (MCS>.</dd>
+                        <dd>- Any offset coordinate systems (G54, G55, etc) are
+                            readjusted based on the new Machine Z-0 value. (The
+                            offset values in G10 L2 Pn Zn are not changed).</dd>
+                        <dd>- This routine is useful if you do not utilize work
+                            coordinates (WCS), or if current WCS (ex. G54) is 
+                            mapped to the Machine’s absolute (MCS) coordinates.
+                            </dd>
                     </ul>
                     
                     <ul><dt>Cautions:</dt>
-                        <dd>- If homing limit switches have been installed and the machine is homed (G28.2 X0 Y0 Z0), then Z-0 was set to the top of the Z-axis travel (Z max).</dd>
-                        <dd>- This routine will remap the Z-axis zero value to near or on the machine bed.</dd>
-                        <dd>- Consider resetting the soft limit Z min value [ztn] to define new work volume travel limits (Ex. Thickness of part), or use one of the WCS routines.</dd>
+                        <dd>- If homing switches have been installed and the
+                            machine is homed (G28.2 X0 Y0 Z0), then Z-0 was set
+                            to the top of the Z-axis travel (Z max).</dd>
+                        <dd>- This routine will remap the Z-axis zero value to 
+                            near or on the machine bed.</dd>
+                        <dd>- Consider resetting the soft limit Z min value 
+                            [ztn] to define new work volume travel limits (Ex. 
+                            Thickness of part), or use one of the WCS routines.
+                            </dd>
                     </ul>                    
 
                     <dl><hr>
                         <dt id="wcsfl">WCS (G5x) Floating -</dt>
-                        <dd>- Probing sequence runs from the machine’s current X-Y position</dd>
-                        <dd>- Locate the moveable touchplate on the desired work surface, and position the tool so it is located above (~1” or 25mm) the touchplate.</dd>
+                        <dd>- Probing sequence runs from the machine’s 
+                            current X-Y position</dd>
+                        <dd>- Locate the moveable touchplate on the desired 
+                            work surface, and position the tool so it is 
+                            located above (~1” or 25mm) the touchplate.</dd>
                         
 
                     <ul><dt>Notes:</dt>
-                        <dd>- This routine will set the G5x Z-axis to zero(0).</dd>
-                        <dd>- Useful if you always keep the same tool loaded, or if you have a defined X-0, Y-0 setup locations (ex. G54 – G59 WCS).</dd>
-                        <dd>- The routine only rewrites the Z-0 parameter (G10 L2 P# Zn) and does not affect the X and Y axis zero locations.</dd>
+                        <dd>- This routine will set the G5x Z-axis to zero(0).
+                        </dd>
+                        <dd>- Useful if you always keep the same tool loaded, 
+                            or if you have a defined X-0, Y-0 setup locations 
+                            (ex. G54 – G59 WCS).</dd>
+                        <dd>- The routine only rewrites the Z-0 parameter 
+                            (G10 L2 P# Zn) and does not affect the X and Y 
+                            axis zero locations.</dd>
                     </ul>
 
                     <dl><hr>
                         <dt id="wcsfx"><b>WCS</b> (G5x) Fixed -</dt>
-                        <dd>- Utilizes a touchplate that is fixed to the work surface of the machine.</dd>
-                        <dd>- The probing sequence moves (via G30) the machine to this predetermined location XYZ.</dd>
-                        <dd>- To clear the workpiece, the head is first raised to the z-clearance value and then translates to the fixed touchplate location.</dd>
-                        <dd>- If the fixed location has not yet been defined, use the G30 tab to set this value.</dd>
+                        <dd>- Utilizes a touchplate that is fixed to the work
+                            surface of the machine.</dd>
+                        <dd>- The probing sequence moves (via G30) the machine 
+                            to this predetermined location XYZ.</dd>
+                        <dd>- To clear the workpiece, the head is first raised 
+                            to the z-clearance value and then translates to the 
+                            fixed touchplate location.</dd>
+                        <dd>- If the fixed location has not yet been defined, 
+                            use the G30 tab to set this value.</dd>
 
                     <ul><dt>Notes:</dt>
-                        <dd>- This routine will set the machine bed as Z-0 in the G5x coordinate system.</dd>
-                        <dd>- To make the top of the part Z-0, add the nominal thickness of the material to the probe height input value.</dd>
+                        <dd>- This routine will set the machine bed as Z-0 in 
+                            the G5x coordinate system.</dd>
+                        <dd>- To make the top of the part Z-0, add the nominal 
+                            thickness of the material to the probe height input 
+                            value.</dd>
                     </ul>
                     </dl>
 
                     <dl><hr>
                         <dt><b>WCS</b> (G5x) G92 offset -</dt>
-                        <dd>- Useful if you keep a pre-defined Z-0 that is a safe distance away from the machine bed.</dd>
-                        <dd>- The G92 offset will establish a temporary Z-0 offset until it is turned off.</dd>
-                        <dd>- Once the job has run, turn off the offset (via G92.1) and the Z-0 value will revert back to the defined value for the selected coordinate system.</dd>
-                        <dd>- Selected from the floating tab, the sequence will run from the machines’ current X-Y position.</dd>
-                        <dd>- Selected from the fixed tab, the sequence will move to the fixed plate location before running the probe cycle.</dd>
+                        <dd>- Useful if you keep a pre-defined Z-0 that is a 
+                            safe distance away from the machine bed.</dd>
+                        <dd>- The G92 offset will establish a temporary Z-0 
+                            offset until it is turned off.</dd>
+                        <dd>- Once the job has run, turn off the offset 
+                            (via G92.1) and the Z-0 value will revert back to
+                            the defined value for the selected coordinate 
+                            system.</dd>
+                        <dd>- Selected from the floating tab, the sequence will
+                            run from the machines’ current X-Y position.</dd>
+                        <dd>- Selected from the fixed tab, the sequence will 
+                            move to the fixed plate location before running 
+                            the probe cycle.</dd>
                     </dl>
 
                 </div>
