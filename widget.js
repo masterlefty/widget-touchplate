@@ -1,4 +1,4 @@
-/* global requirejs cprequire cpdefine chilipeppr transferCode */
+/* global requirejs cprequire cpdefine chilipeppr transferCode lastCoords */
 // Defining the globals above helps Cloud9 not show warnings for those variables
 
 // ChiliPeppr Widget/Element Javascript
@@ -237,7 +237,8 @@ cpdefine("inline:com-chilipeppr-dlvp-widget-touchplate", ["chilipeppr_ready", /*
         onRun: function(evt) {
             // when user clicks the run button
             console.log("user clicked run button. evt:", evt, event.target.id);
-            
+            console.log("coordinate is:", lastCoords);
+
             // define variable to determine which subroutine to run based on
             // user selection through the tabs
             var runCode = event.target.id;
