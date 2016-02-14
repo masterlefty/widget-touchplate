@@ -8,10 +8,14 @@
     padding: 1px 4px;
 }
 
+#com-chilipeppr-dlvp-widget-touchplate .panel-heading {
+   background-color: #f5f5f5;
+}
+
 #com-chilipeppr-dlvp-widget-touchplate .panel-body{
    position: relative;
    padding: 0px;
-   background-color:white;
+   background-color: white;
 }
 
 #com-chilipeppr-dlvp-widget-touchplate .settings-notes{
