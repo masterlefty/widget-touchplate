@@ -253,6 +253,7 @@ cpdefine("inline:com-chilipeppr-dlvp-widget-touchplate", ["chilipeppr_ready", /*
                 $('.com-chilipeppr-dlvp-widget-touchplate-tab2-name').text(coords.coord +" Float");
                 $('.com-chilipeppr-dlvp-widget-touchplate-tab3-name').text(coords.coord +" Fixed");
                 $('#' + this.id + ' .btn-touchplaterun2').text(coords.coord + " Run");
+                $('#' + this.id + ' .btn-touchplaterun4').text(coords.coord + " Run");
                 
                 this.lastCoords = coords;
                 gCoordNum = coords.coordNum; //54, 55, etc
